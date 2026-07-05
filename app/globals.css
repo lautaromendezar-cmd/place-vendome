@@ -19,6 +19,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* el header fijo (~80px) no debe tapar el título de la sección al anclar */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -31,6 +33,32 @@ body {
 ::selection {
   background-color: var(--color-gold);
   color: var(--color-ink);
+}
+
+/* Scrollbar on-brand */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold-dim) var(--color-ink);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dim);
+  border: 3px solid var(--color-ink);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Foco visible por teclado, coherente con la marca */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
 }
 
 /* ---- Entrada del hero (animación al cargar, en cascada) ---- */

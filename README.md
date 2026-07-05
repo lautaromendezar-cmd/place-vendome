@@ -36,3 +36,6 @@ cada sección a un documento del CMS, sin tocar componentes.
 - [ ] Detalle de "Seguridad y Servicios generales" según brochure (placeholder en `site.ts`).
 - [ ] Datos legales del desarrollador en el footer (placeholder en `site.ts`).
 - [ ] GA4 / Pixel si se lanza pauta.
+- [ ] Setear `NEXT_PUBLIC_SITE_URL` en Vercel con el dominio final (hoy usa
+      `place-vendome.vercel.app` como base para las URLs de Open Graph / preview
+      al compartir). El favicon y la `og-image.jpg` ya están generados.

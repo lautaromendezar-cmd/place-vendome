@@ -17,8 +17,33 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
+  // TODO: reemplazar por el dominio final cuando esté (hoy: dominio de Vercel)
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://place-vendome.vercel.app",
+  ),
   title: site.meta.title,
   description: site.meta.description,
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    siteName: site.brand.name,
+    title: site.meta.title,
+    description: site.meta.description,
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${site.brand.name} — Liniers, Buenos Aires`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.meta.title,
+    description: site.meta.description,
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
