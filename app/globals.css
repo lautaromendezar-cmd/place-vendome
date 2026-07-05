@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f2ede3;
+  --color-cream-soft: #f7f4ec;
+  --color-ink: #131210;
+  --color-ink-soft: #1d1b17;
+  --color-gold: #bfa268;
+  --color-gold-light: #d9c595;
+  --color-gold-dim: #8f7a4e;
+  --color-stone: #6b6455;
+}
+
+/* inline: las variables de next/font viven en <body>, no en :root */
+@theme inline {
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-jost), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-jost), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* ---- Reveal on scroll ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-video {
+    display: none;
+  }
+}
+
+/* ---- Inputs del formulario (subrayado fino, estilo referencia) ---- */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(242 237 227 / 0.35);
+  padding: 0.65rem 0;
+  color: var(--color-cream);
+  font-size: 0.95rem;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+}
+
+.field::placeholder {
+  color: rgb(242 237 227 / 0.55);
+}
+
+.field:focus-visible {
+  border-bottom-color: var(--color-gold);
+}
+
+select.field {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+select.field option {
+  color: var(--color-ink);
+  background: var(--color-cream);
+}
