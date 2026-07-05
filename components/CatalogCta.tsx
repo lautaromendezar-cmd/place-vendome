@@ -39,7 +39,7 @@ export default function CatalogCta({ content }: { content: CatalogContent }) {
           <p className="text-[0.7rem] uppercase tracking-[0.45em] text-stone">
             {content.eyebrow}
           </p>
-          <h2 className="mt-4 font-display text-4xl font-light leading-tight md:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-5xl">
             {content.headline}
           </h2>
           <p className="mt-6 max-w-xl text-[0.98rem] font-light leading-relaxed text-stone">

@@ -72,6 +72,7 @@ export interface AmenityIcon {
 export interface AmenityGroup {
   title: string;
   items: string[];
+  image: ImageAsset;
 }
 
 export interface AmenitiesContent {
@@ -105,17 +106,20 @@ export interface SelectField {
 export interface ContactContent {
   eyebrow: string;
   headline: string;
+  /** Copy que acompaña al CTA principal de WhatsApp */
+  whatsappNote: string;
+  /** Label del botón principal (abre WhatsApp) */
+  whatsappButton: string;
+  /** Texto del toggle que revela el formulario de mail (opción secundaria) */
+  altToggle: string;
   fields: {
     name: string;
-    whatsapp: string;
     email: string;
     bedrooms: SelectField;
     message: string;
   };
   submitLabel: string;
   successMessage: string;
-  /** Texto del acceso directo a WhatsApp bajo el formulario */
-  whatsappCta: string;
   image: ImageAsset;
 }
 

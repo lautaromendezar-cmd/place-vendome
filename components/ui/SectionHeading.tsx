@@ -1,8 +1,7 @@
 import Reveal from "./Reveal";
 
 /**
- * Encabezado de sección: eyebrow tracking amplio + titular serif.
- * El eje dorado vertical (firma del sitio) antecede al eyebrow.
+ * Encabezado de sección: eyebrow tracking amplio + titular serif en negrita.
  * `headline` admite "\n" para cortes de línea deliberados.
  */
 export default function SectionHeading({
@@ -29,7 +28,7 @@ export default function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`mt-4 max-w-3xl font-display text-4xl leading-[1.15] font-light md:text-5xl lg:text-[3.4rem] ${
+        className={`mt-4 max-w-3xl font-display text-4xl leading-[1.12] font-semibold md:text-5xl lg:text-[3.4rem] ${
           dark ? "text-gold-light" : "text-ink"
         }`}
       >

@@ -131,29 +131,42 @@ export const site: SiteContent = {
     ],
     groups: [
       {
-        title: "Amenities exclusivas para Propietarios",
+        title: "Exclusivas para Propietarios",
         items: [
           "Piscina cubierta",
           "Gimnasio equipado",
           "Espacio de yoga y stretching",
           "Laundry",
         ],
+        image: {
+          src: "/images/amenities/piscina-cubierta-1.jpg",
+          alt: "Piscina cubierta climatizada, exclusiva para propietarios",
+        },
       },
       {
-        title: "Amenities para Propietarios e Invitados",
+        title: "Para Propietarios e Invitados",
         items: [
           "Parque con zonas de recreo y descanso",
           "Piscina descubierta con solárium",
           "Parrillas y pérgolas",
           "Sala de juegos",
         ],
+        image: {
+          src: "/images/amenities/pergola-1.jpg",
+          alt: "Pérgola y parrillas en el parque, para propietarios e invitados",
+        },
       },
       {
-        title: "Seguridad y Servicios generales",
+        title: "Seguridad y Servicios",
         items: [
           "Cocheras cubiertas",
-          "[Detalle de seguridad y servicios a completar según brochure]",
+          "Acceso con seguridad",
+          "[Detalle de servicios a completar según brochure]",
         ],
+        image: {
+          src: "/images/interiores/lobby.jpg",
+          alt: "Lobby de acceso con control de seguridad",
+        },
       },
     ],
   },
@@ -194,10 +207,12 @@ export const site: SiteContent = {
 
   contact: {
     eyebrow: "Contacto",
-    headline: "¿Te interesaría recibir mayor información o coordinar una visita?",
+    headline: "Coordiná tu visita en un mensaje.",
+    whatsappNote: "Te respondemos al instante, directo con un asesor.",
+    whatsappButton: "Consultanos por WhatsApp",
+    altToggle: "Prefiero dejar mis datos y que me contacten",
     fields: {
       name: "Nombre completo",
-      whatsapp: "WhatsApp (+549...)",
       email: "E-mail",
       bedrooms: {
         label: "Dormitorios",
@@ -207,7 +222,6 @@ export const site: SiteContent = {
     },
     submitLabel: "Enviar",
     successMessage: "Gracias. Un asesor se va a contactar a la brevedad.",
-    whatsappCta: "O escribinos directo por WhatsApp",
     image: {
       src: "/images/exteriores/piscina-terraza-1.jpg",
       alt: "Terraza con piscina de Place Vendôme al atardecer",

@@ -33,7 +33,7 @@ export default function Header({
       <header
         className={`fixed inset-x-0 top-0 z-40 transition-colors duration-500 ${
           scrolled && !open
-            ? "bg-ink/90 backdrop-blur-sm"
+            ? "border-b border-gold/15 bg-ink/95 backdrop-blur-md"
             : "bg-transparent"
         }`}
       >
@@ -42,13 +42,26 @@ export default function Header({
             href="#inicio"
             aria-label={brand.name}
             onClick={() => setOpen(false)}
+            className="relative block h-9 w-24 md:h-11 md:w-28"
           >
+            {/* Cresta dorada sobre el hero; cambia a marfil (alto contraste) sobre la barra negra */}
             <Image
               src={brand.crestGold}
               alt=""
-              width={90}
-              height={35}
-              className="h-8 w-auto md:h-9"
+              fill
+              sizes="112px"
+              className={`object-contain object-left transition-opacity duration-500 ${
+                scrolled && !open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <Image
+              src={brand.crestIvory}
+              alt=""
+              fill
+              sizes="112px"
+              className={`object-contain object-left transition-opacity duration-500 ${
+                scrolled && !open ? "opacity-100" : "opacity-0"
+              }`}
             />
           </a>
 
