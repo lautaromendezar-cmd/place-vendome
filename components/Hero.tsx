@@ -59,24 +59,24 @@ export default function Hero({
       />
 
       <div className="relative z-10 flex w-full max-w-full flex-col items-center px-6 text-center">
+        {/* El logo es raster (PNG): se muestra a su tamaño nativo, sin animar, para que quede nítido */}
         <Image
           src={brand.logoIvory}
           alt={brand.name}
           width={340}
           height={264}
           priority
-          className="hero-rise w-60 md:w-80"
-          style={{ animationDelay: "0.1s" }}
+          className="w-52 md:w-64"
         />
         <p
           className="hero-rise mt-10 max-w-full font-display text-xl font-light italic tracking-wide text-cream md:text-3xl"
-          style={{ animationDelay: "0.45s" }}
+          style={{ animationDelay: "0.2s" }}
         >
           {content.tagline}
         </p>
         <p
           className="hero-rise mt-5 text-xs uppercase tracking-[0.5em] text-gold-light md:text-sm"
-          style={{ animationDelay: "0.7s" }}
+          style={{ animationDelay: "0.4s" }}
         >
           {content.location}
         </p>
@@ -85,7 +85,7 @@ export default function Hero({
           target="_blank"
           rel="noopener noreferrer"
           className="hero-rise mt-11 bg-gold px-11 py-4 text-[0.78rem] uppercase tracking-[0.35em] text-ink transition-colors duration-300 hover:bg-gold-light"
-          style={{ animationDelay: "0.95s" }}
+          style={{ animationDelay: "0.6s" }}
         >
           {content.ctaLabel}
         </a>
@@ -94,7 +94,7 @@ export default function Hero({
       <a
         href="#concepto"
         className="hero-rise absolute bottom-8 z-10 text-[0.6rem] uppercase tracking-[0.4em] text-cream/70 transition-colors hover:text-gold"
-        style={{ animationDelay: "1.3s" }}
+        style={{ animationDelay: "0.9s" }}
       >
         {content.scrollHint}
       </a>
