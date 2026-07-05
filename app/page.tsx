@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Concept from "@/components/Concept";
 import Gallery from "@/components/Gallery";
 import Amenities from "@/components/Amenities";
+import Typologies from "@/components/Typologies";
 import Location from "@/components/Location";
 import Lifestyle from "@/components/Lifestyle";
 import Contact from "@/components/Contact";
@@ -20,6 +21,7 @@ export default function Home() {
         <Concept content={site.concept} brand={site.brand} />
         <Gallery content={site.gallery} />
         <Amenities content={site.amenities} />
+        <Typologies content={site.typologies} />
         <Location content={site.location} />
         <Lifestyle content={site.lifestyle} />
         <Contact content={site.contact} whatsapp={site.whatsapp} />

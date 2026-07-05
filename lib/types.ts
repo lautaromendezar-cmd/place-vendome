@@ -82,6 +82,27 @@ export interface AmenitiesContent {
   groups: AmenityGroup[];
 }
 
+export interface TypologyUnit {
+  label: string;
+  subtitle: string;
+  detail: string;
+  plan: ImageAsset;
+}
+
+export interface TypologyBuilding {
+  id: string;
+  name: string;
+  units: TypologyUnit[];
+}
+
+export interface TypologiesContent {
+  eyebrow: string;
+  headline: string;
+  note: string;
+  zoomHint: string;
+  buildings: TypologyBuilding[];
+}
+
 export interface LocationContent {
   eyebrow: string;
   headline: string;
@@ -157,6 +178,7 @@ export interface SiteContent {
   concept: ConceptContent;
   gallery: GalleryContent;
   amenities: AmenitiesContent;
+  typologies: TypologiesContent;
   location: LocationContent;
   lifestyle: LifestyleContent;
   contact: ContactContent;

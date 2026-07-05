@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Brand, HeroContent, WhatsAppConfig } from "@/lib/types";
 
@@ -15,6 +15,7 @@ export default function Hero({
 }) {
   // El video solo se monta en desktop: en mobile no se descarga ni un byte.
   const [showVideo, setShowVideo] = useState(false);
+  const mediaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia(
@@ -26,31 +27,54 @@ export default function Hero({
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  // Parallax leve del fondo (desactivado si el usuario prefiere menos movimiento)
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const el = mediaRef.current;
+        if (!el) return;
+        const y = Math.min(window.scrollY, window.innerHeight);
+        el.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <section
       id="inicio"
       className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-ink"
     >
-      <Image
-        src={content.fallbackImage.src}
-        alt={content.fallbackImage.alt}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
-      {showVideo && (
-        <video
-          className="hero-video absolute inset-0 h-full w-full object-cover"
-          src={content.videoSrc}
-          poster={content.fallbackImage.src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
+      <div ref={mediaRef} className="absolute inset-x-0 -top-[12%] h-[124%] will-change-transform">
+        <Image
+          src={content.fallbackImage.src}
+          alt={content.fallbackImage.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
-      )}
+        {showVideo && (
+          <video
+            className="hero-video absolute inset-0 h-full w-full object-cover"
+            src={content.videoSrc}
+            poster={content.fallbackImage.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          />
+        )}
+      </div>
       {/* Velo para legibilidad: capa plana + gradiente */}
       <div className="absolute inset-0 bg-ink/30" aria-hidden="true" />
       <div

@@ -13,13 +13,45 @@ export default function Header({
 }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [active, setActive] = useState<string>("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 40);
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
+
+  // Sección activa: la que ocupa el centro del viewport
+  useEffect(() => {
+    const ids = ["inicio", ...nav.map((n) => n.anchor)];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [nav]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -86,6 +118,14 @@ export default function Header({
             </span>
           </button>
         </div>
+
+        {/* Barra de progreso de lectura */}
+        <div className="absolute inset-x-0 bottom-0 h-px bg-transparent" aria-hidden="true">
+          <div
+            className="h-full bg-gold transition-[width] duration-150 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </header>
 
       {/* Overlay de navegación */}
@@ -96,20 +136,24 @@ export default function Header({
         }`}
       >
         <ul className="flex flex-col items-center gap-5 md:gap-6">
-          {nav.map((link, i) => (
-            <li key={link.anchor}>
-              <a
-                href={`#${link.anchor}`}
-                onClick={() => setOpen(false)}
-                className={`font-display text-3xl font-light text-cream transition-all duration-500 hover:text-gold md:text-4xl ${
-                  open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                }`}
-                style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {nav.map((link, i) => {
+            const isActive = active === link.anchor;
+            return (
+              <li key={link.anchor}>
+                <a
+                  href={`#${link.anchor}`}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`font-display text-3xl font-light transition-all duration-500 hover:text-gold md:text-4xl ${
+                    isActive ? "text-gold" : "text-cream"
+                  } ${open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+                  style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </>

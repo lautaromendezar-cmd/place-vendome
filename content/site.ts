@@ -27,6 +27,7 @@ export const site: SiteContent = {
     { label: "Concepto", anchor: "concepto" },
     { label: "Galería", anchor: "galeria" },
     { label: "Amenities", anchor: "amenities" },
+    { label: "Tipologías", anchor: "tipologias" },
     { label: "Ubicación", anchor: "ubicacion" },
     { label: "Lifestyle", anchor: "lifestyle" },
     { label: "Contacto", anchor: "contacto" },
@@ -44,7 +45,7 @@ export const site: SiteContent = {
   hero: {
     videoSrc: "/videos/render-360.mp4",
     fallbackImage: {
-      src: "/images/exteriores/fachada-frente.jpg",
+      src: "/images/exteriores/fachada-frente.webp",
       alt: "Fachada de los dos edificios de Place Vendôme al atardecer",
     },
     tagline: "Un Sueño. Una Vida. Un Futuro. Un Legado.",
@@ -63,7 +64,7 @@ export const site: SiteContent = {
     ],
     highlight: "Dos edificios. Un mismo estándar: el máximo.",
     image: {
-      src: "/images/exteriores/vista-aerea.jpg",
+      src: "/images/exteriores/vista-aerea.webp",
       alt: "Vista aérea de Place Vendôme y su entorno en Liniers",
     },
   },
@@ -73,43 +74,43 @@ export const site: SiteContent = {
     headline: "Cada detalle, a la altura de quien lo habita.",
     images: [
       {
-        src: "/images/exteriores/fachada-frente.jpg",
+        src: "/images/exteriores/fachada-frente.webp",
         alt: "Fachada de Place Vendôme desde la vereda",
       },
       {
-        src: "/images/interiores/lobby.jpg",
+        src: "/images/interiores/lobby.webp",
         alt: "Lobby de acceso con doble altura",
       },
       {
-        src: "/images/interiores/living-1.jpg",
+        src: "/images/interiores/living-1.webp",
         alt: "Living comedor con ventanales de piso a techo",
       },
       {
-        src: "/images/interiores/cocina-1.jpg",
+        src: "/images/interiores/cocina-1.webp",
         alt: "Cocina integrada con isla",
       },
       {
-        src: "/images/interiores/comedor-1.jpg",
+        src: "/images/interiores/comedor-1.webp",
         alt: "Comedor con vista abierta",
       },
       {
-        src: "/images/interiores/dormitorio-1.jpg",
+        src: "/images/interiores/dormitorio-1.webp",
         alt: "Dormitorio principal en suite",
       },
       {
-        src: "/images/interiores/bano-1.jpg",
+        src: "/images/interiores/bano-1.webp",
         alt: "Baño principal con terminaciones premium",
       },
       {
-        src: "/images/exteriores/piscina-terraza-2.jpg",
+        src: "/images/exteriores/piscina-terraza-2.webp",
         alt: "Piscina en la terraza al atardecer",
       },
       {
-        src: "/images/interiores/ingreso-1.jpg",
+        src: "/images/interiores/ingreso-1.webp",
         alt: "Ingreso peatonal al edificio",
       },
       {
-        src: "/images/exteriores/isometrica-3.jpg",
+        src: "/images/exteriores/isometrica-3.webp",
         alt: "Vista isométrica del conjunto",
       },
     ],
@@ -139,7 +140,7 @@ export const site: SiteContent = {
           "Laundry",
         ],
         image: {
-          src: "/images/amenities/piscina-cubierta-1.jpg",
+          src: "/images/amenities/piscina-cubierta-1.webp",
           alt: "Piscina cubierta climatizada, exclusiva para propietarios",
         },
       },
@@ -152,7 +153,7 @@ export const site: SiteContent = {
           "Sala de juegos",
         ],
         image: {
-          src: "/images/amenities/pergola-1.jpg",
+          src: "/images/amenities/pergola-1.webp",
           alt: "Pérgola y parrillas en el parque, para propietarios e invitados",
         },
       },
@@ -164,9 +165,66 @@ export const site: SiteContent = {
           "[Detalle de servicios a completar según brochure]",
         ],
         image: {
-          src: "/images/interiores/lobby.jpg",
+          src: "/images/interiores/lobby.webp",
           alt: "Lobby de acceso con control de seguridad",
         },
+      },
+    ],
+  },
+
+  typologies: {
+    eyebrow: "Tipologías",
+    headline: "Plantas pensadas\npara vivirlas.",
+    note: "Estas son las unidades de planta baja, con jardín y expansión propia. El catálogo completo incluye todas las plantas por piso y tipología.",
+    zoomHint: "Ampliar plano",
+    buildings: [
+      {
+        id: "e1",
+        name: "Edificio 1",
+        units: [
+          {
+            label: "Depto A",
+            subtitle: "Planta Baja",
+            detail: "Jardín y expansión propia · Frente a Av. Larrazábal",
+            plan: {
+              src: "/planos/e1-pb-depto-a.png",
+              alt: "Planta del Depto A de planta baja, Edificio 1",
+            },
+          },
+          {
+            label: "Depto B",
+            subtitle: "Planta Baja",
+            detail: "Jardín y expansión propia · Contrafrente",
+            plan: {
+              src: "/planos/e1-pb-depto-b.png",
+              alt: "Planta del Depto B de planta baja, Edificio 1",
+            },
+          },
+        ],
+      },
+      {
+        id: "e2",
+        name: "Edificio 2",
+        units: [
+          {
+            label: "Depto A",
+            subtitle: "Planta Baja",
+            detail: "Jardín y expansión propia · Frente a Av. Larrazábal",
+            plan: {
+              src: "/planos/e2-pb-depto-a.png",
+              alt: "Planta del Depto A de planta baja, Edificio 2",
+            },
+          },
+          {
+            label: "Depto B",
+            subtitle: "Planta Baja",
+            detail: "Jardín y expansión propia · Esquina Ercilla",
+            plan: {
+              src: "/planos/e2-pb-depto-b.png",
+              alt: "Planta del Depto B de planta baja, Edificio 2",
+            },
+          },
+        ],
       },
     ],
   },
@@ -179,7 +237,7 @@ export const site: SiteContent = {
       "Un oasis urbano con conectividad total: avenidas troncales, accesos rápidos al centro y a zona oeste, y a minutos de los polos gastronómicos de la ciudad y de Puerto Madero.",
     ],
     mapImage: {
-      src: "/images/mapa-liniers.jpg",
+      src: "/images/mapa-liniers.webp",
       alt: "Mapa de Liniers y Villa Luro con la ubicación de Place Vendôme",
     },
     connectivity: [
@@ -196,12 +254,12 @@ export const site: SiteContent = {
     eyebrow: "Lifestyle",
     headline: "Una manera de vivir.",
     images: [
-      { src: "/images/amenities/solarium-1.jpg", alt: "Solárium con reposeras junto a la piscina" },
-      { src: "/images/amenities/piscina-2.jpg", alt: "Piscina descubierta rodeada de verde" },
-      { src: "/images/amenities/gimnasio-1.jpg", alt: "Gimnasio con equipamiento de última generación" },
-      { src: "/images/amenities/pergola-1.jpg", alt: "Pérgola con espacios de estar al aire libre" },
-      { src: "/images/amenities/yoga.jpg", alt: "Espacio de yoga y relajación" },
-      { src: "/images/amenities/parque.jpg", alt: "Parque central con paisajismo de diseño" },
+      { src: "/images/amenities/solarium-1.webp", alt: "Solárium con reposeras junto a la piscina" },
+      { src: "/images/amenities/piscina-2.webp", alt: "Piscina descubierta rodeada de verde" },
+      { src: "/images/amenities/gimnasio-1.webp", alt: "Gimnasio con equipamiento de última generación" },
+      { src: "/images/amenities/pergola-1.webp", alt: "Pérgola con espacios de estar al aire libre" },
+      { src: "/images/amenities/yoga.webp", alt: "Espacio de yoga y relajación" },
+      { src: "/images/amenities/parque.webp", alt: "Parque central con paisajismo de diseño" },
     ],
   },
 
@@ -223,7 +281,7 @@ export const site: SiteContent = {
     submitLabel: "Enviar",
     successMessage: "Gracias. Un asesor se va a contactar a la brevedad.",
     image: {
-      src: "/images/exteriores/piscina-terraza-1.jpg",
+      src: "/images/exteriores/piscina-terraza-1.webp",
       alt: "Terraza con piscina de Place Vendôme al atardecer",
     },
   },
