@@ -41,11 +41,11 @@ export default function Contact({
         className="object-cover opacity-40"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/40 to-ink/85"
+        className="absolute inset-0 bg-ink/65"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto flex max-w-7xl justify-center px-6 py-24 md:justify-end md:px-8 md:py-36">
+      <div className="relative mx-auto flex max-w-7xl justify-center px-6 py-24 md:px-8 md:py-36">
         <Reveal className="w-full max-w-md">
           <div className="bg-ink/85 p-8 backdrop-blur-sm md:p-10">
             <p className="text-[0.65rem] uppercase tracking-[0.45em] text-gold">

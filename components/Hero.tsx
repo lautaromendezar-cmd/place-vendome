@@ -51,9 +51,10 @@ export default function Hero({
           aria-hidden="true"
         />
       )}
-      {/* Velo para legibilidad */}
+      {/* Velo para legibilidad: capa plana + gradiente */}
+      <div className="absolute inset-0 bg-ink/30" aria-hidden="true" />
       <div
-        className="absolute inset-0 bg-gradient-to-b from-ink/55 via-ink/25 to-ink/70"
+        className="absolute inset-0 bg-gradient-to-b from-ink/45 via-ink/30 to-ink/70"
         aria-hidden="true"
       />
 
@@ -64,19 +65,27 @@ export default function Hero({
           width={340}
           height={264}
           priority
-          className="w-52 md:w-64"
+          className="hero-rise w-60 md:w-80"
+          style={{ animationDelay: "0.1s" }}
         />
-        <p className="mt-10 max-w-full font-display text-lg font-light italic tracking-wide text-cream md:text-2xl">
+        <p
+          className="hero-rise mt-10 max-w-full font-display text-xl font-light italic tracking-wide text-cream md:text-3xl"
+          style={{ animationDelay: "0.45s" }}
+        >
           {content.tagline}
         </p>
-        <p className="mt-5 text-[0.68rem] uppercase tracking-[0.5em] text-gold-light">
+        <p
+          className="hero-rise mt-5 text-xs uppercase tracking-[0.5em] text-gold-light md:text-sm"
+          style={{ animationDelay: "0.7s" }}
+        >
           {content.location}
         </p>
         <a
           href={`https://wa.me/${whatsapp.phone}?text=${encodeURIComponent(whatsapp.message)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 bg-gold px-10 py-4 text-[0.72rem] uppercase tracking-[0.35em] text-ink transition-colors duration-300 hover:bg-gold-light"
+          className="hero-rise mt-11 bg-gold px-11 py-4 text-[0.78rem] uppercase tracking-[0.35em] text-ink transition-colors duration-300 hover:bg-gold-light"
+          style={{ animationDelay: "0.95s" }}
         >
           {content.ctaLabel}
         </a>
@@ -84,7 +93,8 @@ export default function Hero({
 
       <a
         href="#concepto"
-        className="absolute bottom-8 z-10 text-[0.6rem] uppercase tracking-[0.4em] text-cream/70 transition-colors hover:text-gold"
+        className="hero-rise absolute bottom-8 z-10 text-[0.6rem] uppercase tracking-[0.4em] text-cream/70 transition-colors hover:text-gold"
+        style={{ animationDelay: "1.3s" }}
       >
         {content.scrollHint}
       </a>
