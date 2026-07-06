@@ -21,8 +21,8 @@ export default function Home() {
         <Gallery content={site.gallery} />
         <Amenities content={site.amenities} />
         <Typologies content={site.typologies} />
-        <Location content={site.location} />
         <Lifestyle content={site.lifestyle} />
+        <Location content={site.location} />
         <ContactCatalog
           contact={site.contact}
           catalog={site.catalog}
