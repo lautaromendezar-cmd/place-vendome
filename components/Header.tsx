@@ -60,6 +60,16 @@ export default function Header({
     };
   }, [open]);
 
+  // Si se agranda a desktop con el overlay abierto, cerrarlo
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   return (
     <>
       <header
@@ -97,12 +107,40 @@ export default function Header({
             />
           </a>
 
+          {/* Nav inline en desktop */}
+          <nav
+            aria-label="Navegación principal"
+            className="hidden items-center gap-x-7 lg:flex"
+          >
+            {nav.map((link) => {
+              const isActive = active === link.anchor;
+              return (
+                <a
+                  key={link.anchor}
+                  href={`#${link.anchor}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`group relative py-1 text-[0.68rem] uppercase tracking-[0.22em] transition-colors duration-300 ${
+                    isActive ? "text-gold" : "text-cream/85 hover:text-gold"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-px w-full origin-left bg-gold transition-transform duration-300 ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                    aria-hidden="true"
+                  />
+                </a>
+              );
+            })}
+          </nav>
+
           <button
             type="button"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="group relative z-50 flex h-10 w-10 items-center justify-center"
+            className="group relative z-50 flex h-10 w-10 items-center justify-center lg:hidden"
           >
             <span className="relative block h-3.5 w-7">
               <span
@@ -128,10 +166,10 @@ export default function Header({
         </div>
       </header>
 
-      {/* Overlay de navegación */}
+      {/* Overlay de navegación (tablet y mobile) */}
       <nav
-        aria-label="Navegación principal"
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-ink transition-opacity duration-500 ${
+        aria-label="Menú"
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-ink transition-opacity duration-500 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
