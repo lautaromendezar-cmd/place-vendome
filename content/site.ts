@@ -20,7 +20,7 @@ export const site: SiteContent = {
   meta: {
     title: "Place Vendôme — Liniers, Buenos Aires",
     description:
-      "Dos edificios de categoría en el nuevo polo premium de Liniers. Amenities de primer nivel, diseño contemporáneo y una ubicación con conectividad total. Un Sueño. Una Vida. Un Futuro. Un Legado.",
+      "Dos edificios de categoría en el nuevo polo premium de Liniers. Un privilegio reservado: amenities de primer nivel, diseño contemporáneo y conectividad total. Un Sueño. Una Vida. Un Futuro. Un Legado.",
   },
 
   nav: [
@@ -62,7 +62,7 @@ export const site: SiteContent = {
       "En el corazón de un barrio en plena reconversión hacia el segmento premium, Place Vendôme es un oasis urbano: puertas adentro, calma, verde y servicios de categoría. Puertas afuera, la ciudad entera al alcance.",
       "Formar parte no es para todos. Es para quienes llegan primero.",
     ],
-    highlight: "Dos edificios. Un mismo estándar: el máximo.",
+    highlight: "Un privilegio reservado para quienes buscan el máximo estándar.",
     image: {
       src: "/images/exteriores/vista-aerea.webp",
       alt: "Vista aérea de Place Vendôme y su entorno en Liniers",
@@ -233,8 +233,8 @@ export const site: SiteContent = {
     eyebrow: "Ubicación",
     headline: "El barrio que viene,\nen la ciudad de siempre.",
     paragraphs: [
-      "Liniers vive su reconversión: nuevos desarrollos, nuevas propuestas y un perfil de barrio que se orienta al segmento premium. Place Vendôme se anticipa a ese movimiento y se instala donde el valor está por venir.",
-      "Un oasis urbano con conectividad total: avenidas troncales, accesos rápidos al centro y a zona oeste, y a minutos de los polos gastronómicos de la ciudad y de Puerto Madero.",
+      "Liniers vive su reconversión: nuevos desarrollos, nuevas propuestas y un perfil de barrio que se orienta al segmento premium. Place Vendôme se anticipa a ese movimiento y se instala donde el valor está por venir. Anticiparse es de pocos.",
+      "Un oasis urbano con conectividad total: puertas adentro, calma y verde; puertas afuera, avenidas troncales, accesos rápidos al centro y a zona oeste, y a minutos de los polos gastronómicos de la ciudad y de Puerto Madero.",
     ],
     mapImage: {
       src: "/images/mapa-liniers.webp",
@@ -290,10 +290,10 @@ export const site: SiteContent = {
     eyebrow: "Catálogo",
     headline: "El proyecto completo, en detalle.",
     description:
-      "Plantas, tipologías, amenities y terminaciones. Dejanos tus datos y descargá el catálogo completo de Place Vendôme.",
-    ctaLabel: "Descargar el catálogo",
+      "Plantas, tipologías, amenities y terminaciones. Dejanos tus datos y accedé al catálogo completo de Place Vendôme.",
+    ctaLabel: "Acceder al catálogo",
     modal: {
-      title: "Descargá el catálogo completo",
+      title: "Accedé al catálogo completo",
       nameLabel: "Nombre",
       phoneLabel: "Celular",
       submitLabel: "Descargar",
