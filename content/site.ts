@@ -119,16 +119,63 @@ export const site: SiteContent = {
   amenities: {
     eyebrow: "Amenities",
     headline: "Todo lo que hace a una vida mejor,\nsin salir de casa.",
-    icons: [
-      { icon: "/icons/icon-parque.png", label: "Parque con zonas de recreo y descanso" },
-      { icon: "/icons/icon-piscina.png", label: "Piscina descubierta con solárium" },
-      { icon: "/icons/icon-piscina-cubierta.png", label: "Piscina cubierta" },
-      { icon: "/icons/icon-gimnasio.png", label: "Gimnasio equipado" },
-      { icon: "/icons/icon-yoga.png", label: "Espacio de yoga y stretching" },
-      { icon: "/icons/icon-juegos.png", label: "Sala de juegos" },
-      { icon: "/icons/icon-parrilla.png", label: "Parrillas y pérgolas" },
-      { icon: "/icons/icon-laundry.png", label: "Laundry" },
-      { icon: "/icons/icon-cochera.png", label: "Cocheras cubiertas" },
+    showcase: [
+      {
+        icon: "/icons/icon-parque.png",
+        name: "Parque con zonas de recreo",
+        image: {
+          src: "/images/amenities/parque.webp",
+          alt: "Parque central con paisajismo de diseño",
+        },
+      },
+      {
+        icon: "/icons/icon-piscina.png",
+        name: "Piscina descubierta y solárium",
+        image: {
+          src: "/images/amenities/piscina-2.webp",
+          alt: "Piscina descubierta rodeada de verde",
+        },
+      },
+      {
+        icon: "/icons/icon-piscina-cubierta.png",
+        name: "Piscina cubierta climatizada",
+        image: {
+          src: "/images/amenities/piscina-cubierta-1.webp",
+          alt: "Piscina cubierta climatizada",
+        },
+      },
+      {
+        icon: "/icons/icon-gimnasio.png",
+        name: "Gimnasio equipado",
+        image: {
+          src: "/images/amenities/gimnasio-1.webp",
+          alt: "Gimnasio con equipamiento de última generación",
+        },
+      },
+      {
+        icon: "/icons/icon-yoga.png",
+        name: "Yoga y stretching",
+        image: {
+          src: "/images/amenities/yoga.webp",
+          alt: "Espacio de yoga y relajación",
+        },
+      },
+      {
+        icon: "/icons/icon-parrilla.png",
+        name: "Parrillas y pérgolas",
+        image: {
+          src: "/images/amenities/pergola-1.webp",
+          alt: "Pérgola con parrillas y espacios de estar",
+        },
+      },
+      {
+        icon: "/icons/icon-cochera.png",
+        name: "Cocheras cubiertas",
+        image: {
+          src: "/images/amenities/cochera-1.webp",
+          alt: "Cocheras cubiertas del edificio",
+        },
+      },
     ],
     groups: [
       {
@@ -139,10 +186,6 @@ export const site: SiteContent = {
           "Espacio de yoga y stretching",
           "Laundry",
         ],
-        image: {
-          src: "/images/amenities/piscina-cubierta-1.webp",
-          alt: "Piscina cubierta climatizada, exclusiva para propietarios",
-        },
       },
       {
         title: "Para Propietarios e Invitados",
@@ -152,10 +195,6 @@ export const site: SiteContent = {
           "Parrillas y pérgolas",
           "Sala de juegos",
         ],
-        image: {
-          src: "/images/amenities/pergola-1.webp",
-          alt: "Pérgola y parrillas en el parque, para propietarios e invitados",
-        },
       },
       {
         title: "Seguridad y Servicios",
@@ -164,10 +203,6 @@ export const site: SiteContent = {
           "Acceso con seguridad",
           "[Detalle de servicios a completar según brochure]",
         ],
-        image: {
-          src: "/images/interiores/lobby.webp",
-          alt: "Lobby de acceso con control de seguridad",
-        },
       },
     ],
   },

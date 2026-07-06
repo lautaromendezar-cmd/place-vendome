@@ -64,21 +64,23 @@ export interface GalleryContent {
   images: ImageAsset[];
 }
 
-export interface AmenityIcon {
+export interface AmenityShowcaseItem {
   icon: string;
-  label: string;
+  name: string;
+  image: ImageAsset;
 }
 
 export interface AmenityGroup {
   title: string;
   items: string[];
-  image: ImageAsset;
 }
 
 export interface AmenitiesContent {
   eyebrow: string;
   headline: string;
-  icons: AmenityIcon[];
+  /** Lista interactiva: al hover se revela la foto de cada amenity */
+  showcase: AmenityShowcaseItem[];
+  /** Desglose de acceso (propietarios / invitados / seguridad) */
   groups: AmenityGroup[];
 }
 
