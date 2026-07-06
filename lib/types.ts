@@ -129,10 +129,16 @@ export interface LocationContent {
   address: string;
 }
 
+export interface StatementSegment {
+  text: string;
+  /** true = palabra/frase en itálica (acento) */
+  em?: boolean;
+}
+
 export interface LifestyleContent {
   eyebrow: string;
-  headline: string;
-  images: ImageAsset[];
+  /** Statement que se "pinta" palabra por palabra al scrollear */
+  statement: StatementSegment[];
 }
 
 export interface SelectField {

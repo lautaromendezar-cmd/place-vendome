@@ -285,14 +285,16 @@ export const site: SiteContent = {
 
   lifestyle: {
     eyebrow: "Lifestyle",
-    headline: "Una manera de vivir.",
-    images: [
-      { src: "/images/amenities/solarium-1.webp", alt: "Solárium con reposeras junto a la piscina" },
-      { src: "/images/amenities/piscina-2.webp", alt: "Piscina descubierta rodeada de verde" },
-      { src: "/images/amenities/gimnasio-1.webp", alt: "Gimnasio con equipamiento de última generación" },
-      { src: "/images/amenities/pergola-1.webp", alt: "Pérgola con espacios de estar al aire libre" },
-      { src: "/images/amenities/yoga.webp", alt: "Espacio de yoga y relajación" },
-      { src: "/images/amenities/parque.webp", alt: "Parque central con paisajismo de diseño" },
+    statement: [
+      { text: "Una manera de vivir donde cada día " },
+      { text: "se elige", em: true },
+      { text: ". Mañanas de pileta y sol, tardes de parque y encuentro, noches a pasos de los mejores " },
+      { text: "sabores", em: true },
+      { text: " de la ciudad. En Place Vendôme, el lujo no se " },
+      { text: "muestra", em: true },
+      { text: ": se " },
+      { text: "habita", em: true },
+      { text: "." },
     ],
   },
 
