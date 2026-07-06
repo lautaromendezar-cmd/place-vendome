@@ -7,8 +7,7 @@ import Amenities from "@/components/Amenities";
 import Typologies from "@/components/Typologies";
 import Location from "@/components/Location";
 import Lifestyle from "@/components/Lifestyle";
-import Contact from "@/components/Contact";
-import CatalogCta from "@/components/CatalogCta";
+import ContactCatalog from "@/components/ContactCatalog";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
 
@@ -24,8 +23,11 @@ export default function Home() {
         <Typologies content={site.typologies} />
         <Location content={site.location} />
         <Lifestyle content={site.lifestyle} />
-        <Contact content={site.contact} whatsapp={site.whatsapp} />
-        <CatalogCta content={site.catalog} />
+        <ContactCatalog
+          contact={site.contact}
+          catalog={site.catalog}
+          whatsapp={site.whatsapp}
+        />
       </main>
       <Footer content={site.footer} brand={site.brand} />
       <WhatsAppFab config={site.whatsapp} />
