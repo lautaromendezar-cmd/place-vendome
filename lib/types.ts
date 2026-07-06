@@ -27,6 +27,8 @@ export interface Brand {
   crestGold: string;
   /** Cresta "PV" sola, marfil */
   crestIvory: string;
+  /** Solo el monograma PV (sin el anillo de texto), marfil — para el preloader */
+  crestMono: string;
 }
 
 export interface WhatsAppConfig {

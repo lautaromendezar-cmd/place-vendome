@@ -90,6 +90,7 @@ export default function Hero({
           width={340}
           height={264}
           priority
+          data-hero-logo=""
           className="w-52 md:w-64"
         />
         <p

@@ -15,6 +15,7 @@ export const site: SiteContent = {
     logoDark: "/brand/logo-dark.png",
     crestGold: "/brand/crest-gold.png",
     crestIvory: "/brand/crest-ivory.png",
+    crestMono: "/brand/crest-mono-ivory.png",
   },
 
   meta: {

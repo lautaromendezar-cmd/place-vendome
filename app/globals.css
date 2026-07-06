@@ -61,6 +61,24 @@ body {
   outline-offset: 3px;
 }
 
+/* ---- Preloader: anillo de texto girando ---- */
+@keyframes preloaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader-ring {
+  animation: preloaderSpin 9s linear infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-ring {
+    animation: none;
+  }
+}
+
 /* ---- Entrada del hero (animación al cargar, en cascada) ---- */
 @keyframes heroRise {
   from {

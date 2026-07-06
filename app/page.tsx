@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import Preloader from "@/components/Preloader";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Concept from "@/components/Concept";
@@ -14,6 +15,7 @@ import WhatsAppFab from "@/components/WhatsAppFab";
 export default function Home() {
   return (
     <>
+      <Preloader brand={site.brand} />
       <Header brand={site.brand} nav={site.nav} />
       <main>
         <Hero content={site.hero} brand={site.brand} whatsapp={site.whatsapp} />
