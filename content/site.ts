@@ -45,8 +45,8 @@ export const site: SiteContent = {
   hero: {
     videoSrc: "/videos/render-360.mp4",
     fallbackImage: {
-      src: "/images/exteriores/fachada-frente.webp",
-      alt: "Fachada de los dos edificios de Place Vendôme al atardecer",
+      src: "/images/exteriores/vista-aerea.webp",
+      alt: "Vista aérea de los dos edificios de Place Vendôme en Liniers",
     },
     tagline: "Un Sueño. Una Vida. Un Futuro. Un Legado.",
     location: "LINIERS · BUENOS AIRES",
@@ -64,8 +64,8 @@ export const site: SiteContent = {
     ],
     highlight: "Un privilegio reservado para quienes buscan el máximo estándar.",
     image: {
-      src: "/images/exteriores/vista-aerea.webp",
-      alt: "Vista aérea de Place Vendôme y su entorno en Liniers",
+      src: "/images/exteriores/fachada-frente.webp",
+      alt: "Fachada de los dos edificios de Place Vendôme",
     },
   },
 

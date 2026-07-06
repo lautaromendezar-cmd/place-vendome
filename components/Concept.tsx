@@ -70,9 +70,9 @@ export default function Concept({
       ref={sectionRef}
       className="relative overflow-hidden bg-ink"
     >
-      <div className="relative mx-auto flex min-h-[92vh] max-w-[1600px] flex-col lg:flex-row">
-        {/* Foto grande protagonista */}
-        <div className="relative h-[54vh] w-full overflow-hidden sm:h-[62vh] lg:h-auto lg:w-[60%]">
+      <div className="relative flex min-h-[92vh] flex-col lg:flex-row">
+        {/* Foto grande protagonista, pegada al borde izquierdo y con corte recto */}
+        <div className="relative h-[52vh] w-full overflow-hidden sm:h-[60vh] lg:h-auto lg:w-[57%]">
           <div
             ref={imgRef}
             className="absolute inset-x-0 -inset-y-[8%] will-change-transform"
@@ -82,21 +82,16 @@ export default function Concept({
               alt={content.image.alt}
               fill
               priority
-              sizes="(min-width: 1024px) 60vw, 100vw"
+              sizes="(min-width: 1024px) 57vw, 100vw"
               className={`object-cover transition-[transform,opacity] duration-[1600ms] ease-out ${
                 inView ? "scale-100 opacity-100" : "scale-[1.12] opacity-0"
               }`}
             />
           </div>
-          {/* Fundido hacia el panel oscuro (abajo en mobile, a la derecha en desktop) */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-ink/5 lg:to-ink"
-            aria-hidden="true"
-          />
         </div>
 
         {/* Panel de contenido */}
-        <div className="relative z-10 flex w-full flex-col justify-center px-6 pb-16 sm:px-10 lg:w-[40%] lg:py-28 lg:pr-14 lg:pl-0">
+        <div className="relative z-10 flex w-full flex-col justify-center px-6 py-16 sm:px-10 lg:w-[43%] lg:px-14 lg:py-28">
           {/* Cresta como marca de agua sobre el panel */}
           <Image
             src={brand.crestGold}
@@ -107,18 +102,18 @@ export default function Concept({
             className="pointer-events-none absolute -right-10 top-6 hidden w-72 opacity-[0.06] lg:block"
           />
 
-          {/* Eyebrow + título grande que invade la foto */}
-          <div className="lg:-ml-[34%] lg:pr-4">
+          {/* Eyebrow + título grande */}
+          <div>
             <p
               className={`text-[0.7rem] uppercase tracking-[0.45em] text-gold ${riseCls}`}
             >
               {content.eyebrow}
             </p>
-            <h2 className="mt-5 font-display font-semibold leading-[1.04] text-cream">
+            <h2 className="mt-5 font-display font-semibold leading-[1.05] text-cream">
               {headlineLines.map((line, i) => (
                 <span key={i} className="block overflow-hidden">
                   <span
-                    className={`block text-[2.4rem] sm:text-5xl lg:text-[4.6rem] ${riseCls}`}
+                    className={`block text-[2.3rem] sm:text-5xl lg:text-[3.3rem] xl:text-[3.9rem] ${riseCls}`}
                     style={{ transitionDelay: inView ? `${150 + i * 130}ms` : "0ms" }}
                   >
                     {line}
