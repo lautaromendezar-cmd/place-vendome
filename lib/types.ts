@@ -137,6 +137,8 @@ export interface StatementSegment {
 
 export interface LifestyleContent {
   eyebrow: string;
+  /** Imagen de fondo (oscurecida) detrás del statement */
+  backgroundImage: ImageAsset;
   /** Statement que se "pinta" palabra por palabra al scrollear */
   statement: StatementSegment[];
 }

@@ -285,6 +285,10 @@ export const site: SiteContent = {
 
   lifestyle: {
     eyebrow: "Lifestyle",
+    backgroundImage: {
+      src: "/images/amenities/solarium-1.webp",
+      alt: "Solárium y piscina de Place Vendôme al atardecer",
+    },
     statement: [
       { text: "Una manera de vivir donde cada día " },
       { text: "se elige", em: true },
