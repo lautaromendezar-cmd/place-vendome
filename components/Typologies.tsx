@@ -41,6 +41,33 @@ export default function Typologies({
           headline={content.headline}
         />
 
+        {/* Datos duros + diferenciales */}
+        <Reveal className="mt-12 md:mt-16">
+          <div className="grid grid-cols-3 gap-4 border-y border-ink/10 py-8">
+            {content.stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="font-display text-4xl font-semibold leading-none text-ink md:text-5xl">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-[0.6rem] uppercase tracking-[0.25em] text-stone md:text-[0.66rem]">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <ul className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-2">
+            {content.features.map((f) => (
+              <li
+                key={f}
+                className="flex items-center gap-2.5 text-[0.7rem] uppercase tracking-[0.18em] text-stone"
+              >
+                <span className="h-1 w-1 rounded-full bg-gold" aria-hidden="true" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
         {/* Toggle Edificio 1 / Edificio 2 */}
         <Reveal className="mt-12 flex justify-center md:mt-16">
           <div

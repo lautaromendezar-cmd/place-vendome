@@ -59,9 +59,9 @@ export const site: SiteContent = {
     eyebrow: "El proyecto",
     headline: "Hay direcciones que se eligen.\nY otras que se heredan.",
     paragraphs: [
-      "Place Vendôme son dos edificios concebidos bajo un mismo estándar: el máximo. Arquitectura contemporánea de líneas escultóricas, terrazas verdes y unidades pensadas para quienes entienden que el verdadero lujo es la manera de vivir todos los días.",
+      "Sobre un terreno de dimensiones extraordinarias —de los que apenas quedan un puñado en la Ciudad— se elevan dos edificios hermanos y una tercera estructura dedicada por entero a los amenities, separados por espacios verdes. Líneas escultóricas y unidades pensadas para quienes entienden que el verdadero lujo es la manera de vivir todos los días.",
       "En el corazón de un barrio en plena reconversión hacia el segmento premium, Place Vendôme es un oasis urbano: puertas adentro, calma, verde y servicios de categoría. Puertas afuera, la ciudad entera al alcance.",
-      "Formar parte no es para todos. Es para quienes llegan primero.",
+      "Apenas 44 unidades. Formar parte no es para todos: es para quienes llegan primero.",
     ],
     highlight: "Un privilegio reservado para quienes buscan el máximo estándar.",
     image: {
@@ -211,6 +211,16 @@ export const site: SiteContent = {
   typologies: {
     eyebrow: "Tipologías",
     headline: "Plantas pensadas\npara vivirlas.",
+    stats: [
+      { value: "44", label: "unidades exclusivas" },
+      { value: "3 y 4", label: "ambientes" },
+      { value: "105–226", label: "m² por unidad" },
+    ],
+    features: [
+      "Cochera cubierta propia y baulera",
+      "Palier privado de ingreso",
+      "Ventanales de vista corrida",
+    ],
     note: "Estas son las unidades de planta baja, con jardín y expansión propia. El catálogo completo incluye todas las plantas por piso y tipología.",
     zoomHint: "Ampliar plano",
     buildings: [

@@ -99,9 +99,18 @@ export interface TypologyBuilding {
   units: TypologyUnit[];
 }
 
+export interface TypologyStat {
+  value: string;
+  label: string;
+}
+
 export interface TypologiesContent {
   eyebrow: string;
   headline: string;
+  /** Datos duros del proyecto (unidades, ambientes, m²) */
+  stats: TypologyStat[];
+  /** Diferenciales por unidad (cochera propia, baulera, etc.) */
+  features: string[];
   note: string;
   zoomHint: string;
   buildings: TypologyBuilding[];
