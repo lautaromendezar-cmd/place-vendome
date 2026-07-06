@@ -103,11 +103,27 @@ export interface TypologiesContent {
   buildings: TypologyBuilding[];
 }
 
+export interface NeighborhoodPhoto {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+export interface LocationHighlight {
+  title: string;
+  text: string;
+}
+
 export interface LocationContent {
   eyebrow: string;
   headline: string;
+  intro: string;
   paragraphs: string[];
   mapImage: ImageAsset;
+  /** Fotos del barrio (bares, gastronomía, vida de zona) del brochure */
+  neighborhood: NeighborhoodPhoto[];
+  /** Bloques cortos destacados (gastronomía, conectividad, etc.) */
+  highlights: LocationHighlight[];
   /** Puntos de conectividad (avenidas, accesos, polos) */
   connectivity: string[];
   address: string;

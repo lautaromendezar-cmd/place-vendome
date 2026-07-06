@@ -231,20 +231,53 @@ export const site: SiteContent = {
 
   location: {
     eyebrow: "Ubicación",
-    headline: "El barrio que viene,\nen la ciudad de siempre.",
+    headline: "Calles con historias,\nsabores y sensaciones.",
+    intro:
+      "Place Vendôme llega para impulsar una zona que gana prestigio por su mezcla única de tradición, historia y futuro en pleno desarrollo. Un área rica en identidad, con una personalidad destinada a trascender.",
     paragraphs: [
-      "Liniers vive su reconversión: nuevos desarrollos, nuevas propuestas y un perfil de barrio que se orienta al segmento premium. Place Vendôme se anticipa a ese movimiento y se instala donde el valor está por venir. Anticiparse es de pocos.",
-      "Un oasis urbano con conectividad total: puertas adentro, calma y verde; puertas afuera, avenidas troncales, accesos rápidos al centro y a zona oeste, y a minutos de los polos gastronómicos de la ciudad y de Puerto Madero.",
+      "A pocas cuadras, el polo gastronómico de Emilio Castro —uno de los más vibrantes de la ciudad— y las parrillas que, según los que saben, sirven las mejores carnes del país.",
+      "Y si lo preferís, en pocos minutos estás cenando en Puerto Madero gracias a la cercanía de las autopistas. Una vida a un mensaje de distancia de todo.",
     ],
     mapImage: {
       src: "/images/mapa-liniers.webp",
       alt: "Mapa de Liniers y Villa Luro con la ubicación de Place Vendôme",
     },
+    neighborhood: [
+      {
+        src: "/images/barrio/encuentros.webp",
+        alt: "Encuentro con amigos en un bar del barrio",
+        caption: "Encuentros a la vuelta de casa",
+      },
+      {
+        src: "/images/barrio/cafe.webp",
+        alt: "Café de barrio con identidad propia",
+        caption: "Cafés y bares con identidad",
+      },
+      {
+        src: "/images/barrio/barrio.webp",
+        alt: "Recorriendo el barrio en bicicleta al atardecer",
+        caption: "Un barrio para recorrer",
+      },
+    ],
+    highlights: [
+      {
+        title: "Gastronomía",
+        text: "El polo de Emilio Castro y las mejores parrillas, a pocas cuadras.",
+      },
+      {
+        title: "Conectividad",
+        text: "Avenidas y accesos a todos los puntos de la ciudad, sus alrededores y aeropuertos.",
+      },
+      {
+        title: "Puerto Madero",
+        text: "A pocos minutos por autopista, cuando la ocasión lo pide.",
+      },
+    ],
     connectivity: [
       "Av. General Paz",
       "Au. Perito Moreno",
+      "Av. Emilio Castro",
       "Av. Rivadavia",
-      "Av. Juan B. Justo",
       "Estación Liniers",
     ],
     address: "Av. Larrazábal, Liniers, Ciudad de Buenos Aires",
