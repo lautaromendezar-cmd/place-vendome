@@ -66,6 +66,24 @@ export interface GalleryContent {
   images: ImageAsset[];
 }
 
+export interface TerminacionItem {
+  image: ImageAsset;
+  /** Título corto del detalle (ej: "Aberturas REHAU") */
+  title: string;
+  /** Bajada opcional con el diferencial (ej: "Ventanales de PVC, piso a techo") */
+  note?: string;
+  /** true = foto horizontal; se muestra como feature a lo ancho en vez de en la grilla vertical */
+  wide?: boolean;
+}
+
+export interface TerminacionesContent {
+  eyebrow: string;
+  headline: string;
+  intro?: string;
+  /** Fotos reales de terminaciones (cocina, baño, aberturas, puerta) */
+  items: TerminacionItem[];
+}
+
 export interface AmenityShowcaseItem {
   icon: string;
   name: string;
@@ -218,6 +236,7 @@ export interface SiteContent {
   gallery: GalleryContent;
   amenities: AmenitiesContent;
   typologies: TypologiesContent;
+  terminaciones: TerminacionesContent;
   location: LocationContent;
   lifestyle: LifestyleContent;
   contact: ContactContent;

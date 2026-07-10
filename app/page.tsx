@@ -6,6 +6,7 @@ import Concept from "@/components/Concept";
 import Gallery from "@/components/Gallery";
 import Amenities from "@/components/Amenities";
 import Typologies from "@/components/Typologies";
+import Terminaciones from "@/components/Terminaciones";
 import Location from "@/components/Location";
 import Lifestyle from "@/components/Lifestyle";
 import ContactCatalog from "@/components/ContactCatalog";
@@ -23,6 +24,7 @@ export default function Home() {
         <Gallery content={site.gallery} />
         <Amenities content={site.amenities} />
         <Typologies content={site.typologies} />
+        <Terminaciones content={site.terminaciones} />
         <Lifestyle content={site.lifestyle} />
         <Location content={site.location} />
         <ContactCatalog

@@ -29,6 +29,7 @@ export const site: SiteContent = {
     { label: "Galería", anchor: "galeria" },
     { label: "Amenities", anchor: "amenities" },
     { label: "Tipologías", anchor: "tipologias" },
+    { label: "Terminaciones", anchor: "terminaciones" },
     { label: "Lifestyle", anchor: "lifestyle" },
     { label: "Ubicación", anchor: "ubicacion" },
     { label: "Contacto", anchor: "contacto" },
@@ -298,6 +299,80 @@ export const site: SiteContent = {
             },
           },
         ],
+      },
+    ],
+  },
+
+  terminaciones: {
+    eyebrow: "Terminaciones",
+    headline: "Los detalles\nque se ven de cerca.",
+    intro:
+      "Materiales nobles y equipamiento de primeras marcas. Cada unidad se entrega con terminaciones pensadas para durar y para disfrutarse todos los días.",
+    items: [
+      {
+        image: {
+          src: "/images/terminaciones/puerta-pentagono.webp",
+          alt: "Puerta con herraje pentágono de línea premium",
+        },
+        title: "Puerta pentágono",
+        note: "Herrajes de seguridad de diseño exclusivo.",
+        wide: true,
+      },
+      {
+        image: {
+          src: "/images/terminaciones/cocina-1.webp",
+          alt: "Cocina con grifería monocomando e iluminación LED",
+        },
+        title: "Cocina",
+        note: "Grifería monocomando e iluminación LED.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/rehau-1.webp",
+          alt: "Ventanal de piso a techo con aberturas REHAU",
+        },
+        title: "Aberturas REHAU",
+        note: "Ventanales de PVC, piso a techo.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/bano-1.webp",
+          alt: "Baño con griferías y bacha de diseño",
+        },
+        title: "Baño",
+        note: "Griferías y bachas de diseño.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/cocina-2.webp",
+          alt: "Cocina con mesada integrada",
+        },
+        title: "Cocina",
+        note: "Mesada integrada.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/rehau-2.webp",
+          alt: "Living con ventanales REHAU y máxima entrada de luz",
+        },
+        title: "Aberturas REHAU",
+        note: "Máxima entrada de luz natural.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/bano-2.webp",
+          alt: "Grifería monocomando de baño",
+        },
+        title: "Baño",
+        note: "Grifería monocomando.",
+      },
+      {
+        image: {
+          src: "/images/terminaciones/cocina-3.webp",
+          alt: "Cocina con bacha de acero bajo mesada",
+        },
+        title: "Cocina",
+        note: "Bacha de acero bajo mesada.",
       },
     ],
   },
