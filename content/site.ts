@@ -57,7 +57,7 @@ export const site: SiteContent = {
 
   concept: {
     eyebrow: "El proyecto",
-    headline: "Hay direcciones que se eligen.\nY otras que se heredan.",
+    headline: "Una dirección que no se elige:\nse hereda.",
     paragraphs: [
       "Sobre un terreno de dimensiones extraordinarias —de los que apenas quedan un puñado en la Ciudad— se elevan dos edificios hermanos y una tercera estructura dedicada por entero a los amenities, separados por espacios verdes. Líneas escultóricas y unidades pensadas para quienes entienden que el verdadero lujo es la manera de vivir todos los días.",
       "En el corazón de un barrio en plena reconversión hacia el segmento premium, Place Vendôme es un oasis urbano: puertas adentro, calma, verde y servicios de categoría. Puertas afuera, la ciudad entera al alcance.",
@@ -139,10 +139,10 @@ export const site: SiteContent = {
       },
       {
         icon: "/icons/icon-piscina-cubierta.png",
-        name: "Piscina cubierta climatizada",
+        name: "Piscina semicubierta e hidromasaje",
         image: {
           src: "/images/amenities/piscina-cubierta-1.webp",
-          alt: "Piscina cubierta climatizada",
+          alt: "Piscina semicubierta con sector de hidromasaje",
         },
       },
       {
@@ -182,27 +182,45 @@ export const site: SiteContent = {
       {
         title: "Exclusivas para Propietarios",
         items: [
-          "Piscina cubierta",
-          "Gimnasio equipado",
-          "Espacio de yoga y stretching",
+          "Espacios parquizados con paisajismo y sectores de recreación y descanso",
+          "Piscina descubierta con solárium",
+          "Piscina semicubierta con hidromasaje",
+          "Vestuarios",
+          "Sector de juegos infantiles",
+          "Parrillas y mesas",
+          "Gimnasio cubierto",
+          "Coworking",
           "Laundry",
+          "Palier privado en cada unidad",
         ],
       },
       {
         title: "Para Propietarios e Invitados",
         items: [
-          "Parque con zonas de recreo y descanso",
-          "Piscina descubierta con solárium",
-          "Parrillas y pérgolas",
-          "Sala de juegos",
+          "Sector de recreación en 1° piso, con reserva previa (acceso por calle Ercilla)",
+          "Estacionamiento de cortesía para invitados (acceso por Av. Larrazábal)",
+          "Estacionamiento de cortesía en edificio (acceso por calle Ercilla)",
         ],
       },
       {
         title: "Seguridad y Servicios",
         items: [
-          "Cocheras cubiertas",
-          "Acceso con seguridad",
-          "[Detalle de servicios a completar según brochure]",
+          "Control de acceso con puesto de seguridad permanente",
+          "Portones vehiculares automáticos monitoreados por cámara",
+          "Cámaras de seguridad e intercomunicadores",
+          "Grupo electrógeno de respaldo (ascensor, iluminación y seguridad)",
+          "Ascensor de mudanzas en cada edificio",
+          "Toilettes de cortesía en subsuelo y planta baja",
+          "Gestión de residuos con montacarga exclusivo",
+        ],
+      },
+      {
+        title: "Cocheras y Bauleras",
+        items: [
+          "Cocheras cubiertas en subsuelo",
+          "Baulera propia para cada unidad",
+          "Cocheras de cortesía en planta baja (acceso por Av. Larrazábal)",
+          "Cocheras de cortesía para salón de usos múltiples (acceso por calle Ercilla)",
         ],
       },
     ],

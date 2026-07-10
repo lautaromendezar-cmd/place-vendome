@@ -113,7 +113,7 @@ export default function Amenities({ content }: { content: AmenitiesContent }) {
         </div>
 
         {/* Desglose de acceso */}
-        <div className="mt-20 grid gap-10 border-t border-gold/15 pt-14 md:mt-28 md:grid-cols-3 md:gap-8">
+        <div className="mt-20 grid gap-10 border-t border-gold/15 pt-14 md:mt-28 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           {content.groups.map((group, i) => (
             <Reveal key={group.title} delay={i * 120}>
               <h3 className="text-[0.68rem] uppercase tracking-[0.32em] text-gold">
