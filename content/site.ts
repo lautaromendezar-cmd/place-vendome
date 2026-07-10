@@ -178,6 +178,14 @@ export const site: SiteContent = {
           alt: "Cocheras cubiertas en subsuelo (render próximamente)",
         },
       },
+      {
+        icon: "/icons/icon-cochera.png",
+        name: "Estacionamiento de cortesía",
+        image: {
+          src: "/images/amenities/cochera-1.webp",
+          alt: "Estacionamiento de cortesía para invitados",
+        },
+      },
     ],
     groups: [
       {
