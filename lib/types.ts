@@ -70,6 +70,8 @@ export interface AmenityShowcaseItem {
   icon: string;
   name: string;
   image: ImageAsset;
+  /** true = todavía no hay render/foto real; muestra un placeholder "Render próximamente" */
+  pending?: boolean;
 }
 
 export interface AmenityGroup {

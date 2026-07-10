@@ -23,20 +23,43 @@ export default function Amenities({ content }: { content: AmenitiesContent }) {
           <div className="grid grid-cols-2 gap-14">
             {/* Foto grande con crossfade */}
             <div className="relative aspect-[4/5] w-full overflow-hidden">
-              {content.showcase.map((a, i) => (
-                <Image
-                  key={a.image.src}
-                  src={a.image.src}
-                  alt={a.image.alt}
-                  fill
-                  sizes="45vw"
-                  className={`object-cover transition-[opacity,transform] duration-700 ease-out ${
-                    i === active
-                      ? "scale-100 opacity-100"
-                      : "scale-105 opacity-0"
-                  }`}
-                />
-              ))}
+              {content.showcase.map((a, i) => {
+                const fade = `transition-[opacity,transform] duration-700 ease-out ${
+                  i === active ? "scale-100 opacity-100" : "scale-105 opacity-0"
+                }`;
+                if (a.pending) {
+                  return (
+                    <div
+                      key={a.name}
+                      className={`absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-b from-cream/[0.05] to-transparent ${fade}`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={a.icon}
+                        alt=""
+                        aria-hidden="true"
+                        className="h-11 w-11 object-contain opacity-40"
+                      />
+                      <span className="font-display text-xl font-light text-cream/55">
+                        Render próximamente
+                      </span>
+                      <span className="text-[0.7rem] uppercase tracking-[0.3em] text-gold/60">
+                        {a.name}
+                      </span>
+                    </div>
+                  );
+                }
+                return (
+                  <Image
+                    key={a.image.src}
+                    src={a.image.src}
+                    alt={a.image.alt}
+                    fill
+                    sizes="45vw"
+                    className={`object-cover ${fade}`}
+                  />
+                );
+              })}
               <div
                 className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20"
                 aria-hidden="true"
@@ -89,24 +112,44 @@ export default function Amenities({ content }: { content: AmenitiesContent }) {
           {content.showcase.map((a, i) => (
             <Reveal key={a.name} delay={(i % 2) * 100}>
               <figure className="group relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={a.image.src}
-                  alt={a.image.alt}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"
-                  aria-hidden="true"
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={a.icon} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
-                  <span className="font-display text-lg font-light text-gold-light">
-                    {a.name}
-                  </span>
-                </figcaption>
+                {a.pending ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-cream/[0.05] ring-1 ring-inset ring-gold/15">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={a.icon}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-8 w-8 object-contain opacity-40"
+                    />
+                    <span className="text-[0.65rem] uppercase tracking-[0.28em] text-cream/45">
+                      Render próximamente
+                    </span>
+                    <span className="px-4 text-center font-display text-base font-light text-gold-light">
+                      {a.name}
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <Image
+                      src={a.image.src}
+                      alt={a.image.alt}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"
+                      aria-hidden="true"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={a.icon} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
+                      <span className="font-display text-lg font-light text-gold-light">
+                        {a.name}
+                      </span>
+                    </figcaption>
+                  </>
+                )}
               </figure>
             </Reveal>
           ))}

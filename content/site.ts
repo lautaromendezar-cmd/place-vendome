@@ -171,10 +171,11 @@ export const site: SiteContent = {
       },
       {
         icon: "/icons/icon-cochera.png",
-        name: "Cocheras cubiertas",
+        name: "Cocheras cubiertas en subsuelo",
+        pending: true,
         image: {
           src: "/images/amenities/cochera-1.webp",
-          alt: "Cocheras cubiertas del edificio",
+          alt: "Cocheras cubiertas en subsuelo (render próximamente)",
         },
       },
     ],
