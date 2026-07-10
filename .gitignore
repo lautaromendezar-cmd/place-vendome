@@ -28,3 +28,6 @@ next-env.d.ts
 # material fuente (no se deploya; los assets usados viven en /public)
 /material
 /referencia
+
+# Nota personal de handoff entre PCs (no versionar)
+DESDE LA PC DE CASA.MD
