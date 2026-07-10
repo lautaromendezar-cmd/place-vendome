@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Brand, HeroContent, WhatsAppConfig } from "@/lib/types";
+import HeroVideo from "./HeroVideo";
 
 export default function Hero({
   content,
@@ -63,15 +64,9 @@ export default function Hero({
           className="object-cover"
         />
         {showVideo && (
-          <video
-            className="hero-video absolute inset-0 h-full w-full object-cover"
+          <HeroVideo
             src={content.videoSrc}
             poster={content.fallbackImage.src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-hidden="true"
           />
         )}
       </div>
