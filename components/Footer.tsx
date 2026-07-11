@@ -21,7 +21,7 @@ export default function Footer({
         <p className="mt-6 text-[0.65rem] uppercase tracking-[0.4em] text-gold-light">
           {content.location}
         </p>
-        <div className="mt-8 max-w-xl space-y-3 text-xs font-light leading-relaxed text-cream/40">
+        <div className="mt-8 max-w-3xl space-y-3 text-xs font-light leading-relaxed text-cream/40">
           {content.legal.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
