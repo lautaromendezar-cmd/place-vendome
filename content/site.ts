@@ -386,10 +386,7 @@ export const site: SiteContent = {
       "A pocas cuadras, el polo gastronómico de Emilio Castro —uno de los más vibrantes de la ciudad— y las parrillas que, según los que saben, sirven las mejores carnes del país.",
       "Y si lo preferís, en pocos minutos estás cenando en Puerto Madero gracias a la cercanía de las autopistas. Una vida a un mensaje de distancia de todo.",
     ],
-    mapImage: {
-      src: "/images/mapa-liniers.webp",
-      alt: "Mapa de Liniers y Villa Luro con la ubicación de Place Vendôme",
-    },
+    mapQuery: "Av. Larrazábal, Liniers, Ciudad Autónoma de Buenos Aires",
     neighborhood: [
       {
         src: "/images/barrio/encuentros.webp",
@@ -491,8 +488,13 @@ export const site: SiteContent = {
 
   footer: {
     location: "Liniers · Buenos Aires · Argentina",
-    legal:
-      "Las imágenes, renders y textos son de carácter ilustrativo y no constituyen oferta. [Datos legales del desarrollador a completar]",
+    legal: [
+      "La información, imágenes, planos, medidas, superficies, descripciones y equipamientos presentados en este material son de carácter ilustrativo y orientativo. El Desarrollador se reserva el derecho de introducir modificaciones en el proyecto, tanto en diseño como en especificaciones técnicas, sin previo aviso, siempre que dichas modificaciones no afecten sustancialmente la funcionalidad o calidad del producto final.",
+      "Las superficies y medidas definitivas surgirán de la documentación técnica aprobada por la autoridad competente y del plano de mensura final.",
+      "Este material no constituye una oferta vinculante en los términos del Código Civil y Comercial, sino una invitación a ofertar. Las condiciones comerciales, precios, formas de pago y plazos de entrega podrán variar sin previo aviso.",
+      "Para mayor información y condiciones actualizadas, consulte con GRUPO VENTURE SRL",
+    ],
+    legalContactEmail: "info@grupoventure.com.ar",
     credit: "Place Vendôme © 2026",
   },
 };

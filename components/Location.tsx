@@ -49,13 +49,15 @@ export default function Location({ content }: { content: LocationContent }) {
         {/* Mapa + destacados + conectividad */}
         <div className="mt-16 grid items-start gap-12 md:mt-24 md:grid-cols-5 md:gap-16">
           <Reveal className="md:col-span-3">
-            <div className="relative aspect-[16/11] w-full overflow-hidden border border-gold/25">
-              <Image
-                src={content.mapImage.src}
-                alt={content.mapImage.alt}
-                fill
-                sizes="(min-width: 768px) 60vw, 100vw"
-                className="object-cover"
+            <div className="relative aspect-[16/11] w-full overflow-hidden border border-gold/25 grayscale-[15%]">
+              <iframe
+                title={`Mapa de ubicación: ${content.address}`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(
+                  content.mapQuery
+                )}&output=embed`}
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
             <p className="mt-4 text-[0.65rem] uppercase tracking-[0.3em] text-stone">

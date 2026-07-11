@@ -152,7 +152,8 @@ export interface LocationContent {
   headline: string;
   intro: string;
   paragraphs: string[];
-  mapImage: ImageAsset;
+  /** Texto de búsqueda para el embed de Google Maps (dirección o referencia) */
+  mapQuery: string;
   /** Fotos del barrio (bares, gastronomía, vida de zona) del brochure */
   neighborhood: NeighborhoodPhoto[];
   /** Bloques cortos destacados (gastronomía, conectividad, etc.) */
@@ -219,7 +220,8 @@ export interface CatalogContent {
 
 export interface FooterContent {
   location: string;
-  legal: string;
+  legal: string[];
+  legalContactEmail: string;
   credit: string;
 }
 
