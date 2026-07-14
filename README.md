@@ -11,12 +11,42 @@ npm run dev     # http://localhost:3000
 npm run build   # build de producción
 ```
 
-## Capa de contenido (para migrar a Sanity)
+## Contenido: el panel del cliente
 
-**Todo** el contenido (textos, rutas de imágenes, listas) vive en
-[`content/site.ts`](content/site.ts), tipado por [`lib/types.ts`](lib/types.ts).
-Los componentes solo reciben esos objetos: hacer el sitio editable es mapear
-cada sección a un documento del CMS, sin tocar componentes.
+El cliente edita textos y fotos en **Sanity Studio**, servido dentro del mismo
+sitio en `/studio`.
+
+**`content/site.ts` sigue siendo la base**: Sanity devuelve solo lo que el cliente
+editó y se mergea encima ([`lib/sanity/content.ts`](lib/sanity/content.ts)).
+Dos consecuencias que importan:
+
+- Si Sanity se cae o tarda, el sitio se sirve igual con los valores del código.
+  Una caída del CMS no tira abajo la web.
+- Lo que **no** está en los schemas nunca es editable: marca y logos, menú,
+  planos, labels de los formularios y textos legales viven solo en el código,
+  donde el cliente no los puede romper.
+
+Los nombres de campo en Sanity son idénticos a las claves de `SiteContent`
+([`lib/types.ts`](lib/types.ts)), por eso el merge es 1:1 y **los componentes no
+saben que existe un CMS**. Si agregás un campo, respetá esa regla.
+
+### Puesta en marcha (una sola vez)
+
+```bash
+cp .env.example .env.local     # completar con los datos del proyecto Sanity
+npm run sanity:seed            # sube /public a Sanity y crea las secciones
+npm run dev                    # el panel queda en /localhost:3000/studio
+```
+
+`sanity:seed` es idempotente pero **pisa lo que el cliente haya editado**: se
+corre en la carga inicial y después no se toca más.
+
+### Que el cliente vea sus cambios al instante
+
+En sanity.io/manage → API → Webhooks, crear uno que apunte a
+`https://<dominio>/api/revalidate` (POST) con el mismo secreto que
+`SANITY_REVALIDATE_SECRET`. Sin eso los cambios igual salen, pero tardan hasta
+1 hora (el `revalidate` de red de seguridad).
 
 ## Assets
 
@@ -30,7 +60,12 @@ cada sección a un documento del CMS, sin tocar componentes.
 
 ## Pendientes (TODO)
 
-- [ ] Número real de WhatsApp → `content/site.ts` (`whatsapp.phone`).
+- [ ] Crear el proyecto en Sanity y completar `.env.local` + las variables en Vercel.
+- [ ] Correr `npm run sanity:seed` e invitar al cliente como **Editor**
+      (rol Editor, no Administrator: no debe poder tocar schemas ni tokens).
+- [ ] Delegar el dominio de nic.ar a los nameservers de Cloudflare (lo hace el
+      cliente con su clave fiscal, una única vez) y desde ahí apuntar a Vercel.
+- [ ] Número real de WhatsApp → ahora se carga desde el panel (Ajustes generales).
 - [ ] Endpoint de los formularios de Contacto y Catálogo
       (`components/Contact.tsx` y `components/CatalogCta.tsx`, marcados con `// TODO`).
 - [ ] Detalle de "Seguridad y Servicios generales" según brochure (placeholder en `site.ts`).

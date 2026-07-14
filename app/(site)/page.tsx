@@ -1,4 +1,4 @@
-import { site } from "@/content/site";
+import { getSiteContent } from "@/lib/sanity/content";
 import Preloader from "@/components/Preloader";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -13,7 +13,9 @@ import ContactCatalog from "@/components/ContactCatalog";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
 
-export default function Home() {
+export default async function Home() {
+  const site = await getSiteContent();
+
   return (
     <>
       <Preloader brand={site.brand} />
