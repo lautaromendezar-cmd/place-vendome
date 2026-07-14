@@ -2,6 +2,34 @@
 
 Estado al 14-jul-2026. Traspaso entre máquinas.
 
+## ⛔ Dónde quedó todo (leer esto primero)
+
+**Frenado esperando al cliente.** Todo lo técnico está hecho y verificado. Lo único que
+falta es que **el cliente delegue el dominio en nic.ar**: tiene que reemplazar los
+nameservers de `placevendome.com.ar` por `hermes.dns-parking.com` y
+`artemis.dns-parking.com`. El dominio está a su nombre y no comparte la clave fiscal de
+AFIP, así que **solo lo puede hacer él**. Es el camino crítico.
+
+**Cómo saber si ya lo hizo, sin preguntarle:**
+
+```bash
+nslookup -type=NS placevendome.com.ar c.dns.ar
+```
+
+- Si dice `wcaup.com` → todavía no.
+- Si dice `dns-parking.com` → **hecho**, seguir con los pendientes.
+
+El `c.dns.ar` del final es clave: es un servidor autoritativo de nic.ar. Un resolver
+común (8.8.8.8) cachea y puede seguir mostrando lo viejo **hasta 24h** después del
+cambio, haciéndote creer que el cliente no cumplió cuando sí.
+
+Ojo: que el registro diga `dns-parking` **no significa que el sitio ya cargue**. Falta
+que propague a los resolvers (minutos a horas). Pero a partir de ahí ya no dependés de
+nadie.
+
+**Mientras el dominio no resuelva, hPanel no deja entrar a la sección de apps.** No es
+un bug: es la misma traba.
+
 ## Arrancar en la PC nueva
 
 ```bash
@@ -31,11 +59,19 @@ NEXT_PUBLIC_SITE_URL="https://place-vendome.vercel.app"
 SANITY_REVALIDATE_SECRET="<ver abajo>"
 ```
 
-`SANITY_REVALIDATE_SECRET` es el único irrecuperable. Si lo perdés, **rotalo** —es
-gratis, porque su único consumidor es el webhook—: generá uno con
-`openssl rand -hex 32`, cargalo en Vercel en Production **y** Preview, redeployá, y
-pegá el mismo valor en el campo *Secret* del webhook en sanity.io/manage. Se rotó
-así el 14-jul-2026.
+`SANITY_REVALIDATE_SECRET` es el único que no se deduce. En la PC nueva, sacalo de
+**hPanel → tu Web App → Environment Variables** (Hostinger sí deja leer el valor; Vercel
+no).
+
+Si no lo podés recuperar de ningún lado, **rotalo**: es gratis, porque su único
+consumidor es el webhook. Generá uno con `openssl rand -hex 32`, cargalo en hPanel,
+**redeployá** (sin eso no toma efecto), y pegá el mismo valor en el campo *Secret* del
+webhook en sanity.io/manage. Tiene que quedar idéntico en los dos lados o
+`/api/revalidate` devuelve 401 en cada publicación del cliente. Se rotó así el
+14-jul-2026.
+
+Para verificar que un entorno tiene el secreto correcto:
+`npm run revalidate -- https://<url>` → 200 es correcto, 401 es que no coinciden.
 
 `SANITY_API_WRITE_TOKEN` no se baja ni se necesita: era solo para la carga inicial,
 que ya está hecha. El sitio en producción únicamente lee.
@@ -45,8 +81,11 @@ que ya está hecha. El sitio en producción únicamente lee.
 - **Dominio final:** https://placevendome.com.ar (nic.ar, a nombre del cliente).
 - **Hosting: Hostinger** (plan "Ilimitado" = Business Web Hosting), Web App de Node.js
   importada desde GitHub. **Build automático en cada push a `main`**, igual que Vercel.
-  URL temporal mientras propaga el DNS: `firebrick-horse-539237.hostingersite.com`.
   Las 4 variables de entorno se cargan en hPanel → Environment Variables.
+  - **La app buena es `mediumslateblue-chicken-717173.hostingersite.com`.** Pasó los 4
+    chequeos de más abajo.
+  - **`firebrick-horse-539237.hostingersite.com` es una app duplicada y rota** (sirve el
+    HTML pero da 404 en todos los estáticos). **Borrarla.** Ver *Trampas*.
 - **Panel del cliente:** `/studio` sobre el dominio de arriba.
 - **Sanity:** proyecto `place-vendome`, ID `ilht6do1`, dataset `production`.
   Se administra en sanity.io/manage.
@@ -161,6 +200,21 @@ no en el DNS. El DNS solo dice dónde están.
 `placevendome.ar`: da NXDOMAIN, no tiene delegación. No se pudo confirmar desde afuera
 si está registrado (nic.ar no expone RDAP ni whois público). Verificar en *Mis dominios*
 dentro de nic.ar. Si existe, delegarlo también y redirigir con un 301 al `.com.ar`.
+
+## Trampas de Hostinger (ya pagadas, no volver a pisarlas)
+
+**Enganchá el dominio DESDE ADENTRO de la app, nunca por el asistente de "Agregar sitio
+web".** Volver a pasar por el asistente **crea una Web App duplicada** con URL temporal
+nueva, y la vieja se queda sin archivos estáticos. Así nació `firebrick-horse`, que
+sirve el HTML pero da 404 en el logo, las fuentes y el JS. Business son **5 Web Apps**:
+cada duplicado te come un slot.
+
+**Hostinger sirve `/public` y los estáticos perfectamente.** Si ves 404 masivos en
+assets, sospechá de una app duplicada antes que del hosting. El síntoma engaña porque el
+HTML sigue saliendo de caché (`x-hcdn-cache-status: HIT`) y el sitio *parece* vivo.
+
+**El bot Kodee miente.** Es el asistente de ventas, no soporte. Te va a decir que las
+Web Apps son ilimitadas; la página de producto dice 5 en Business. Contrastá siempre.
 
 ## Tres gotchas que te van a morder
 
