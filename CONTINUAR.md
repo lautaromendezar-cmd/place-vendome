@@ -11,13 +11,31 @@ npm install
 
 npx vercel login          # misma cuenta de siempre
 npx vercel link --yes --project place-vendome
-npx vercel env pull .env.local    # baja projectId, dataset y el secreto del webhook
+npx vercel env pull .env.local --environment=production
 
 npm run dev               # sitio en :3000, panel en :3000/studio
 ```
 
-`vercel env pull` es la única forma de recuperar `.env.local`: **no está en el repo
-y no debe estarlo**. No hace falta copiar nada a mano entre las dos máquinas.
+**`vercel env pull` NO recupera los valores.** Las 4 variables están cargadas en
+Vercel como *sensitive*: `vercel env ls` las lista, pero el `pull` las devuelve con
+**string vacío**. Es a propósito, Vercel no las deja leer de vuelta. Y sin
+`--environment=production` es peor todavía: baja el entorno Development, que está
+vacío, y trae un `.env.local` con solo `VERCEL_OIDC_TOKEN`.
+
+Tres de las cuatro se reconstruyen a mano con los datos de este mismo archivo:
+
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID="ilht6do1"
+NEXT_PUBLIC_SANITY_DATASET="production"
+NEXT_PUBLIC_SITE_URL="https://place-vendome.vercel.app"
+SANITY_REVALIDATE_SECRET="<ver abajo>"
+```
+
+`SANITY_REVALIDATE_SECRET` es el único irrecuperable. Si lo perdés, **rotalo** —es
+gratis, porque su único consumidor es el webhook—: generá uno con
+`openssl rand -hex 32`, cargalo en Vercel en Production **y** Preview, redeployá, y
+pegá el mismo valor en el campo *Secret* del webhook en sanity.io/manage. Se rotó
+así el 14-jul-2026.
 
 `SANITY_API_WRITE_TOKEN` no se baja ni se necesita: era solo para la carga inicial,
 que ya está hecha. El sitio en producción únicamente lee.
@@ -39,15 +57,17 @@ que ya está hecha. El sitio en producción únicamente lee.
   lo que el cliente haya editado.
 - El sitio en producción sirve las fotos desde el CDN de Sanity (verificado).
 - Variables cargadas en Vercel y deploy andando.
+- **Webhook de Sanity andando** (14-jul-2026). Publicar en el panel revalida el sitio
+  en segundos, verificado de punta a punta: se editó el `headline` de Concept desde
+  `/studio`, se publicó, y el texto nuevo apareció en producción sin esperar.
+  Está creado en sanity.io/manage → API → Webhooks: URL
+  `https://place-vendome.vercel.app/api/revalidate`, dataset `production`,
+  Create/Update/Delete, POST, con el secreto en *Secret*.
+  El `revalidate: 3600` de `lib/sanity/content.ts` queda como red de seguridad por si
+  un webhook se pierde; el camino normal es el webhook.
 
 ## Pendiente
 
-- [ ] **Webhook de Sanity** → sanity.io/manage → API → Webhooks → Create webhook.
-      URL `https://place-vendome.vercel.app/api/revalidate`, dataset `production`,
-      trigger en Create/Update/Delete, método POST, y en *Secret* el valor de
-      `SANITY_REVALIDATE_SECRET` (está en `.env.local` después del `env pull`).
-      Sin esto los cambios del cliente igual salen, pero tardan hasta 1 hora.
-      Después de crearlo: cambiar un texto en el panel, Publish, y ver si aparece.
 - [ ] **Borrar el token `seed`** en sanity.io/manage → API → Tokens. Ya cumplió.
 - [ ] **Invitar al cliente** a Sanity con rol **Editor** (no Administrator: no debe
       poder tocar schemas ni tokens).
@@ -63,7 +83,7 @@ que ya está hecha. El sitio en producción únicamente lee.
 - [ ] **Manual en PDF** para el cliente explicando el panel.
 - [ ] Endpoints de los formularios de Contacto y Catálogo (siguen con `// TODO`).
 
-## Dos gotchas que te van a morder
+## Tres gotchas que te van a morder
 
 **Sanity queda fijo en la línea 4.x.** `sanity@5` usa `useEffectEvent`, que es de
 React 19.2, pero Next 15 empaqueta su **propia** copia de React 19.1 para el App
@@ -74,6 +94,16 @@ Para saltar a Sanity 5 hay que subir a Next 16 primero.
 **Next cachea las respuestas de Sanity en `.next/cache` entre builds.** Si editás algo
 en el panel y no lo ves localmente, `rm -rf .next` y rebuildeá. En producción no pasa
 porque el webhook tira el caché.
+
+**Cambiar una env var en Vercel no hace nada hasta que redeployes.** Las variables se
+congelan en el deploy: el sitio en vivo sigue corriendo con el valor viejo aunque
+`vercel env ls` ya muestre el nuevo. Si rotás `SANITY_REVALIDATE_SECRET` y no
+redeployás, Sanity firma con el secreto nuevo, producción valida contra el viejo y
+`/api/revalidate` devuelve **401 "Firma inválida"** en cada publicación del cliente.
+Para chequear que producción tiene el secreto vivo, sin depender de Sanity: firmá un
+POST a mano —`sanity-webhook-signature: t=<ts>,v1=<base64url(HMAC-SHA256(secreto,
+"<ts>.<body>"))>`— y esperá un `200 {"revalidated":true}`. Un POST sin firma tiene que
+dar 401.
 
 ## Cómo está armado el contenido
 
