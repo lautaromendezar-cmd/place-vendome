@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "revalidate": "tsx --env-file=.env.local scripts/revalidate.ts",
     "sanity:seed": "tsx --env-file=.env.local scripts/seed-sanity.ts"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
