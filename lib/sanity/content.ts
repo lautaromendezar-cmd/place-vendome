@@ -85,9 +85,13 @@ async function fetchContent(): Promise<RemoteContent | null> {
       {
         next: {
           tags: [SITE_CONTENT_TAG],
-          // Red de seguridad por si un webhook se pierde. El camino normal
-          // es el webhook, que revalida en el momento en que el cliente publica.
-          revalidate: 3600,
+          // Red de seguridad por si un webhook se pierde — y, más importante,
+          // este valor sale como `s-maxage` en el Cache-Control del HTML: es el
+          // tiempo MÁXIMO que el CDN de Hostinger puede servir una página vieja
+          // después de que el cliente publica. Con 3600 los visitantes veían
+          // contenido de hasta una hora atrás (el webhook revalida Next, pero el
+          // CDN tiene su propio caché y no se entera). Con 60, un minuto a lo sumo.
+          revalidate: 60,
         },
       },
     );

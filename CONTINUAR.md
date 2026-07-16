@@ -141,13 +141,15 @@ crashea al subir (“Key "_upload" not allowed in ref”). Los textos se editan 
 **solo las fotos están rotas**. El fix está en el repo:
 
 1. [x] Query tolerante a ambas formas (`coalesce` en `lib/sanity/queries.ts`).
-2. [ ] Deployar eso (push a `main`).
-3. [ ] Crear un token de escritura (rol Editor) → `.env.local` como
-       `SANITY_API_WRITE_TOKEN`.
-4. [ ] `npm run sanity:fix-pictures` (simulación) y después `-- --apply`.
-       Que nadie edite el panel mientras corre.
-5. [ ] Probar subir una foto desde `/studio` (Amenities, la de cocheras).
-6. [ ] **Borrar el token.**
+2. [x] Deployado (commit `6b94b93`, build de Hostinger completado 16-jul 12:07).
+3. [x] Token temporal `fix-pictures-temporal` creado (rol Editor).
+4. [x] Migración aplicada: **42 fotos corregidas** en 9 documentos + 2 borradores
+       (los borradores del cliente en Portada y Terminaciones se migraron sin
+       perder sus cambios). Verificado: el dato quedó como objeto `image` y el
+       sitio siguió sirviendo las fotos sin corte.
+5. [x] Subida probada de punta a punta (16-jul 12:32): foto nueva de cocheras subida
+       desde `/studio`, publicada, y visible en el HTML del dominio en segundos.
+6. [ ] **Borrar el token `fix-pictures-temporal`** y sacarlo de `.env.local`.
 
 ### Después
 
@@ -236,6 +238,20 @@ HTML sigue saliendo de caché (`x-hcdn-cache-status: HIT`) y el sitio *parece* v
 
 **El bot Kodee miente.** Es el asistente de ventas, no soporte. Te va a decir que las
 Web Apps son ilimitadas; la página de producto dice 5 en Business. Contrastá siempre.
+
+**Después de cada deploy: purgar el caché del CDN** (hPanel → Rendimiento → CDN →
+Purgar caché). El CDN de Hostinger cachea el HTML de las páginas según el
+`s-maxage` que manda Next (= el `revalidate` de `lib/sanity/content.ts`), así que
+un nodo puede seguir sirviendo HTML de un build viejo que apunta a CSS/JS que el
+deploy nuevo borró → el sitio se ve sin estilos y un Ctrl+F5 no lo arregla,
+porque el caché no está en el navegador. Pasó el 16-jul-2026.
+
+**El CDN también demora las publicaciones del cliente.** El webhook revalida el
+caché de Next, pero el CDN no se entera y sirve su copia hasta que vence el
+`s-maxage`. Por eso el `revalidate` está en **60** (16-jul-2026): lo que el
+cliente publica tarda a lo sumo un minuto en verse, para todo el mundo. No
+subirlo de vuelta a 3600 sin recordar esto. El "modo desarrollo" del CDN en
+hPanel puentea el caché para probar, pero se apaga solo (~3 h) y no es solución.
 
 ## Tres gotchas que te van a morder
 
