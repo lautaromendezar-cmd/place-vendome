@@ -1,6 +1,59 @@
 # Continuar en otra PC
 
-Estado al 16-jul-2026. Traspaso entre máquinas.
+Estado al 16-jul-2026 (tarde). Traspaso entre máquinas.
+
+## 🎯 Foco actual: cobrar el tercer pago ($315.000)
+
+Hay una **propuesta comercial firmable** que redactó el cliente (PDF en la raíz de
+la carpeta del proyecto, NO commiteado a propósito: tiene DNIs y domicilios — si
+cambiás de PC, llevalo aparte). Claves del documento:
+
+- **Cláusula 4**: el tercer pago ($315.000) es contra sitio operativo y **previo a
+  la entrega de los accesos definitivos**. El traspaso del hosting a nombre del
+  cliente se hace DESPUÉS de cobrar — lo dice su propio documento.
+- **Cláusula 8**: pagado el 100%, el cliente es dueño del código y las
+  credenciales. Si pide copia del repo después de pagar, corresponde entregarla.
+- **Cláusula 9**: hosting a cargo del desarrollador solo el 1er año (se pagó 1 año).
+- **Cláusula 2**: la capacitación es "MEDIANTE VIDEO" — el manual PDF no alcanza,
+  hay que grabar un video del panel (el manual sirve de guion).
+
+**Checklist contra el Anexo I para poder exigir el pago:**
+
+- [x] Formularios de consulta y catálogo → conectados el 16-jul (ver abajo).
+- [ ] Google Analytics (GA4): crear propiedad + pegar el ID. Definir con qué
+      cuenta de Google (ideal: del cliente, o la de Lautaro con acceso para él).
+- [ ] Search Console: verificar dominio (TXT en la zona DNS de Hostinger) + sitemap.
+- [ ] Botones de redes sociales: pedir los links al cliente; si no tienen redes,
+      que lo confirme **por escrito**.
+- [ ] Video de capacitación del panel (5-10 min de pantalla).
+- [ ] Cerrar por escrito los desvíos del Anexo 4: videos YouTube/Vimeo en el
+      panel (no implementado), planos editables (quedaron fijos por diseño),
+      sección avance de obra (era "si corresponde").
+- [ ] Acta de entrega: checklist Anexo cumplido + manual + video → tercer pago
+      (cláusula 4) → traspaso del hosting + accesos por escrito.
+
+**Traspaso del hosting acordado de palabra:** el cliente (Fabián Cabrera) lo quiere
+a su nombre. Plan: transferir la suscripción a una cuenta Hostinger de él DESPUÉS
+de cobrar, y que ese mismo día configure *Account Sharing* (hPanel → perfil →
+Compartir acceso) hacia la cuenta de Lautaro para seguir dando soporte sin
+intercambiar claves. Hay una ficha técnica para su administración en
+`docs/Ficha-Hosting-Place-Vendome.pdf` (completar ID de suscripción y fechas
+desde hPanel → Facturación antes de mandarla).
+
+## Formularios (hecho 16-jul, verificado en producción)
+
+Los dos formularios postean a `/api/contact` (`app/api/contact/route.ts`), que
+manda el mail por **SMTP de Hostinger** con la casilla
+`contacto@placevendome.com.ar` (creada el 16-jul; la casilla se escribe a sí
+misma, el mail del visitante va en Reply-To). Honeypot anti-bots (campo
+`website`), validación con 400, y el catálogo se descarga aunque el mail falle.
+Variables nuevas (cargadas en hPanel y documentadas en `.env.example`):
+`SMTP_HOST=smtp.hostinger.com`, `SMTP_PORT=465`,
+`SMTP_USER=contacto@placevendome.com.ar`, `SMTP_PASS=<contraseña de la casilla,
+se cambia/consulta en hPanel → Emails>`.
+
+⚠️ La contraseña actual de la casilla es débil y viajó por chats: **rotarla** en
+hPanel → Emails y actualizarla en las env vars de hPanel (redeploy) y `.env.local`.
 
 ## ✅ Dónde quedó todo (leer esto primero)
 
@@ -67,6 +120,11 @@ webhook en sanity.io/manage. Tiene que quedar idéntico en los dos lados o
 
 Para verificar que un entorno tiene el secreto correcto:
 `npm run revalidate -- https://<url>` → 200 es correcto, 401 es que no coinciden.
+
+Desde el 16-jul hay además 4 variables `SMTP_*` para los formularios (ver la
+sección *Formularios* y `.env.example`). En una PC nueva se copian de
+hPanel → Environment Variables; la contraseña de la casilla también se puede
+resetear en hPanel → Emails.
 
 `SANITY_API_WRITE_TOKEN` no se baja ni se necesita: era solo para la carga inicial,
 que ya está hecha. El sitio en producción únicamente lee.

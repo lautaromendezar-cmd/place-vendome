@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ficha técnica de hosting — Place Vendôme</title>
+<style>
+  @page { size: A4; margin: 18mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #1c1a17;
+    --muted: #6b6459;
+    --line: #d8d2c6;
+    --accent: #8a6d3b;
+    --bg-soft: #f7f4ee;
+  }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 8mm;
+    padding-bottom: 4mm;
+    border-bottom: 1px solid var(--line);
+  }
+  header .brand {
+    font-size: 9pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2mm;
+  }
+  header h1 { font-size: 17pt; font-weight: normal; }
+  header .sub { color: var(--muted); font-size: 10pt; margin-top: 1mm; }
+  h2 {
+    font-size: 12pt;
+    font-weight: normal;
+    margin: 6mm 0 2.5mm;
+    padding-bottom: 1mm;
+    border-bottom: 1px solid var(--line);
+    page-break-after: avoid;
+  }
+  h2 .num { color: var(--accent); margin-right: 2mm; }
+  p { margin-bottom: 2.5mm; }
+  ul { margin: 0 0 2.5mm 5mm; }
+  li { margin-bottom: 1mm; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2mm 0 3mm;
+    font-size: 10pt;
+  }
+  th, td {
+    text-align: left;
+    padding: 1.8mm 2.5mm;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1.2px solid var(--ink);
+  }
+  td:first-child { white-space: nowrap; font-weight: bold; }
+  .fill {
+    display: inline-block;
+    min-width: 40mm;
+    border-bottom: 1px dotted var(--muted);
+    color: var(--muted);
+    font-style: italic;
+  }
+  .note {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    padding: 2.5mm 3.5mm;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  .footer {
+    margin-top: 8mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--line);
+    font-size: 9pt;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Place Vendôme</div>
+  <h1>Ficha técnica — hosting y servicios del sitio web</h1>
+  <p class="sub">placevendome.com.ar · Julio 2026 · Preparada por Lautaro Méndez</p>
+</header>
+
+<h2><span class="num">1.</span>Suscripción de hosting (Hostinger)</h2>
+<table>
+  <tr><th>Concepto</th><th>Detalle</th></tr>
+  <tr><td>Proveedor</td><td>Hostinger International Ltd. — hostinger.com.ar</td></tr>
+  <tr><td>Plan</td><td>Business Web Hosting</td></tr>
+  <tr><td>ID de suscripción</td><td><span class="fill">&nbsp;</span></td></tr>
+  <tr><td>Contratado</td><td><span class="fill">&nbsp;</span> — pagado por adelantado (48 meses)</td></tr>
+  <tr><td>Vencimiento</td><td><span class="fill">&nbsp;</span></td></tr>
+  <tr><td>Incluye</td><td>Hasta 5 sitios web · Certificado SSL · CDN · Backups diarios · Casillas de correo del dominio · Deploy automático</td></tr>
+</table>
+
+<h2><span class="num">2.</span>Dominio</h2>
+<table>
+  <tr><th>Concepto</th><th>Detalle</th></tr>
+  <tr><td>Dominio</td><td>placevendome.com.ar</td></tr>
+  <tr><td>Registro</td><td>nic.ar — <strong>ya está a nombre de Place Vendôme</strong></td></tr>
+  <tr><td>Renovación</td><td>Anual, se gestiona en nic.ar con la clave fiscal del titular. Próximo vencimiento: <span class="fill">&nbsp;</span></td></tr>
+</table>
+
+<h2><span class="num">3.</span>Cómo está armado el sitio (qué vive dónde)</h2>
+<table>
+  <tr><th>Pieza</th><th>Dónde vive</th><th>Costo</th></tr>
+  <tr><td>Sitio web</td><td>Hostinger (la suscripción del punto 1). Tecnología estándar (Next.js).</td><td>Ya pagado</td></tr>
+  <tr><td>Contenido</td><td>Sanity (panel de edición en placevendome.com.ar/studio). Los textos y fotos que edita Place Vendôme.</td><td>Sin costo</td></tr>
+  <tr><td>Código fuente</td><td>GitHub, bajo custodia del desarrollador como parte del servicio.</td><td>Sin costo</td></tr>
+  <tr><td>Correo (opcional)</td><td>Se puede activar en Hostinger, incluido en el plan.</td><td>Sin costo</td></tr>
+</table>
+<p><strong>Costos corrientes totales:</strong> hosting ya pagado hasta el vencimiento del punto 1;
+renovación anual del dominio en nic.ar. No hay ningún otro abono.</p>
+
+<h2><span class="num">4.</span>Portabilidad</h2>
+<p>El sitio no tiene dependencia exclusiva de ningún proveedor: la tecnología es estándar,
+el contenido es exportable y el código se entrega en copia ante cualquier eventualidad.
+Si en el futuro se decidiera migrar a otro servidor, es una operación normal y prevista.</p>
+
+<h2><span class="num">5.</span>Accesos y traspaso propuesto</h2>
+<ul>
+  <li><strong>Traspaso de la suscripción:</strong> se transfiere el servicio de hosting a una
+      cuenta de Hostinger a nombre de Place Vendôme, coordinado para la semana posterior al
+      lanzamiento (ventana de estabilización).</li>
+  <li><strong>Soporte posterior:</strong> el mismo día del traspaso se configura el
+      <em>acceso compartido</em> de Hostinger (función nativa del panel): el desarrollador accede
+      con su propia cuenta, sin intercambio de contraseñas, y Place Vendôme puede revocar ese
+      acceso cuando quiera.</li>
+  <li><strong>Panel de contenido:</strong> el acceso de edición ya está activo con usuario propio
+      (rol Editor) en placevendome.com.ar/studio.</li>
+</ul>
+
+<div class="note">
+  <strong>Nota sobre el correo del dominio:</strong> las casillas antiguas de
+  @placevendome.com.ar (alojadas en el proveedor anterior) quedaron desconectadas al migrar
+  el dominio. Si alguna persona de la oficina las usaba, esos mails ya no se reciben. Las
+  casillas nuevas se crean en Hostinger sin costo — solicitar al desarrollador indicando
+  nombre de casilla y persona.
+</div>
+
+<p class="footer">Ficha técnica del sitio placevendome.com.ar · Consultas: Lautaro Méndez</p>
+
+</body>
+</html>

@@ -32,3 +32,6 @@ next-env.d.ts
 
 # Nota personal de handoff entre PCs (no versionar)
 DESDE LA PC DE CASA.MD
+
+# Contrato con datos personales (DNIs, domicilios): viaja aparte, no por git
+PROPUESTA*.pdf
