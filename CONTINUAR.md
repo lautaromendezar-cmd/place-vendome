@@ -149,7 +149,13 @@ crashea al subir (“Key "_upload" not allowed in ref”). Los textos se editan 
        sitio siguió sirviendo las fotos sin corte.
 5. [x] Subida probada de punta a punta (16-jul 12:32): foto nueva de cocheras subida
        desde `/studio`, publicada, y visible en el HTML del dominio en segundos.
-6. [ ] **Borrar el token `fix-pictures-temporal`** y sacarlo de `.env.local`.
+6. [x] Token sacado de `.env.local`. **Verificar que `fix-pictures-temporal` esté
+       borrado en sanity.io/manage → API → Tokens** (se creó con expiración corta,
+       así que se muere solo igual, pero mejor borrarlo a mano).
+
+**Cierre (16-jul-2026, tarde):** el cliente editó textos y fotos desde el panel,
+publicó, y los cambios se vieron en el sitio con el CDN activo. Flujo completo
+funcionando sin intervención.
 
 ### Después
 
