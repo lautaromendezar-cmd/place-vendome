@@ -1,8 +1,16 @@
 import { defineQuery } from "next-sanity";
 
-/** Foto → el mismo shape que ImageAsset en lib/types.ts: { src, alt } */
-const PICTURE = `{ "src": asset->url, alt }`;
-const CAPTIONED = `{ "src": asset->url, alt, caption }`;
+/**
+ * Foto → el mismo shape que ImageAsset en lib/types.ts: { src, alt }
+ *
+ * El coalesce tolera las dos formas del campo `asset`:
+ * - `asset.asset->url`: la forma correcta del tipo `image` (objeto que envuelve la
+ *   referencia), que es lo que escribe el Studio cuando el cliente sube una foto.
+ * - `asset->url`: la referencia pelada que dejó el seed original (scripts/
+ *   fix-picture-shape.ts migra los documentos, pero esto cubre cualquier resto).
+ */
+const PICTURE = `{ "src": coalesce(asset.asset->url, asset->url), alt }`;
+const CAPTIONED = `{ "src": coalesce(asset.asset->url, asset->url), alt, caption }`;
 
 /**
  * Una sola consulta trae todo el contenido editable del sitio.

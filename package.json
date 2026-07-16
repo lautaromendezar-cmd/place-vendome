@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "revalidate": "tsx --env-file=.env.local scripts/revalidate.ts",
-    "sanity:seed": "tsx --env-file=.env.local scripts/seed-sanity.ts"
+    "sanity:seed": "tsx --env-file=.env.local scripts/seed-sanity.ts",
+    "sanity:fix-pictures": "tsx --env-file=.env.local scripts/fix-picture-shape.ts"
   },
   "engines": {
     "node": ">=20"

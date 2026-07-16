@@ -1,34 +1,29 @@
 # Continuar en otra PC
 
-Estado al 14-jul-2026. Traspaso entre máquinas.
+Estado al 16-jul-2026. Traspaso entre máquinas.
 
-## ⛔ Dónde quedó todo (leer esto primero)
+## ✅ Dónde quedó todo (leer esto primero)
 
-**Frenado esperando al cliente.** Todo lo técnico está hecho y verificado. Lo único que
-falta es que **el cliente delegue el dominio en nic.ar**: tiene que reemplazar los
-nameservers de `placevendome.com.ar` por `hermes.dns-parking.com` y
-`artemis.dns-parking.com`. El dominio está a su nombre y no comparte la clave fiscal de
-AFIP, así que **solo lo puede hacer él**. Es el camino crítico.
+**EL SITIO ESTÁ EN VIVO en https://placevendome.com.ar.** El cliente delegó el dominio
+en nic.ar (los NS son `hermes/artemis.dns-parking.com`, verificado contra `c.dns.ar`),
+el dominio quedó enganchado a la app buena de Hostinger, y **los 4 chequeos de deploy
+pasan contra el dominio real** (verificado el 16-jul-2026):
 
-**Cómo saber si ya lo hizo, sin preguntarle:**
+1. `x-powered-by: Next.js` — la app Node tiene el control, no el placeholder PHP.
+2. El HTML sirve imágenes desde `cdn.sanity.io` — el contenido sale de Sanity.
+3. `/studio` da 200 y la API de Sanity devuelve `Access-Control-Allow-Credentials:
+   true` para el origen `https://placevendome.com.ar` — el CORS está configurado.
+4. `npm run revalidate -- https://placevendome.com.ar` → `200 {"revalidated":true}`.
 
-```bash
-nslookup -type=NS placevendome.com.ar c.dns.ar
-```
+La app duplicada rota (`firebrick-horse-539237`) **ya fue borrada** — no responde.
+Vercel sigue arriba como rollback (correcto: no bajarlo hasta que Hostinger lleve unos
+días estable).
 
-- Si dice `wcaup.com` → todavía no.
-- Si dice `dns-parking.com` → **hecho**, seguir con los pendientes.
-
-El `c.dns.ar` del final es clave: es un servidor autoritativo de nic.ar. Un resolver
-común (8.8.8.8) cachea y puede seguir mostrando lo viejo **hasta 24h** después del
-cambio, haciéndote creer que el cliente no cumplió cuando sí.
-
-Ojo: que el registro diga `dns-parking` **no significa que el sitio ya cargue**. Falta
-que propague a los resolvers (minutos a horas). Pero a partir de ahí ya no dependés de
-nadie.
-
-**Mientras el dominio no resuelva, hPanel no deja entrar a la sección de apps.** No es
-un bug: es la misma traba.
+**Lo único sin verificar: la URL del webhook de Sanity.** El 14-jul apuntaba a
+`https://place-vendome.vercel.app/api/revalidate`. Si nadie la movió, el cliente
+publica y se revalida el sitio equivocado. Se chequea en sanity.io/manage → API →
+Webhooks (o `npx sanity login` + `npx sanity hook list`). Tiene que apuntar a
+`https://placevendome.com.ar/api/revalidate`, mismo secreto.
 
 ## Arrancar en la PC nueva
 
@@ -126,25 +121,51 @@ Para verificar un entorno nuevo sin depender del cliente, ver *Cómo probar un d
 
 ### Para terminar de publicar (en este orden)
 
-- [ ] **Delegación en nic.ar**: la hace el **cliente** (el dominio está a su nombre y no
-      comparte la clave fiscal). Tiene que reemplazar los nameservers por
-      `hermes.dns-parking.com` y `artemis.dns-parking.com`. Es el paso más lento y el
-      único que no controlás: mandáselo primero, no último.
-- [ ] Enganchar `placevendome.com.ar` a la Web App en hPanel (el SSL se emite solo).
-- [ ] **CORS en Sanity** para `https://placevendome.com.ar`, con *Allow credentials*.
-- [ ] **Mover la URL del webhook** de Sanity al dominio final. Hasta que lo hagas, el
-      cliente publica y se revalida el sitio viejo de Vercel.
-- [ ] Correr los 4 chequeos de *Cómo probar un deploy* contra el dominio real.
-- [ ] Recién ahí: dar de baja Vercel (esperar unos días de estabilidad).
+- [x] **Delegación en nic.ar** — el cliente la hizo (verificado 16-jul contra `c.dns.ar`).
+- [x] Enganchar `placevendome.com.ar` a la Web App en hPanel (SSL emitido, sirve HTTPS).
+- [x] **CORS en Sanity** para `https://placevendome.com.ar`, con *Allow credentials*
+      (verificado: la API devuelve `Access-Control-Allow-Credentials: true`).
+- [x] **Webhook de Sanity movido al dominio final** (16-jul-2026): apunta a
+      `https://placevendome.com.ar/api/revalidate`, dataset `production`, Enabled.
+      Queda probarlo de punta a punta con la primera publicación real del cliente.
+- [x] Correr los 4 chequeos de *Cómo probar un deploy* contra el dominio real
+      (pasaron los 4 el 16-jul-2026).
+- [ ] Recién ahí: dar de baja Vercel (esperar unos días de estabilidad; al 16-jul
+      sigue arriba como rollback).
+
+### Urgente: migrar la forma de las fotos (16-jul-2026)
+
+El cliente no puede subir fotos desde el panel: el seed guardó cada `picture.asset`
+como referencia pelada en vez del objeto `image` que declara el schema, y el Studio
+crashea al subir (“Key "_upload" not allowed in ref”). Los textos se editan bien;
+**solo las fotos están rotas**. El fix está en el repo:
+
+1. [x] Query tolerante a ambas formas (`coalesce` en `lib/sanity/queries.ts`).
+2. [ ] Deployar eso (push a `main`).
+3. [ ] Crear un token de escritura (rol Editor) → `.env.local` como
+       `SANITY_API_WRITE_TOKEN`.
+4. [ ] `npm run sanity:fix-pictures` (simulación) y después `-- --apply`.
+       Que nadie edite el panel mientras corre.
+5. [ ] Probar subir una foto desde `/studio` (Amenities, la de cocheras).
+6. [ ] **Borrar el token.**
 
 ### Después
 
-- [ ] **Borrar el token `seed`** en sanity.io/manage → API → Tokens. Ya cumplió.
-- [ ] **Invitar al cliente** a Sanity con rol **Editor** (no Administrator: no debe
-      poder tocar schemas ni tokens).
+- [x] **Token de escritura borrado** (16-jul-2026). Se llamaba `paneladmin` (rol
+      Editor, el del seed). No queda ningún token en el proyecto; si algún día hace
+      falta escribir por script, se crea uno nuevo en API → Tokens.
+- [x] **Cliente invitado** a Sanity con rol **Editor** y manual PDF enviado
+      (16-jul-2026). Falta la prueba de punta a punta: cuando publique su primer
+      cambio, verificar que aparezca en `https://placevendome.com.ar` (eso valida el
+      webhook nuevo con una publicación real).
 - [ ] **Casillas de correo** en Hostinger, si el cliente las llega a querer. Hoy dijo
       que no usa mail del dominio (ver *Zona DNS vieja*).
-- [ ] **Manual en PDF** para el cliente explicando el panel.
+- [x] **Manual en PDF** para el cliente explicando el panel (16-jul-2026): fuente en
+      `docs/manual-panel.html`, PDF en `docs/Manual-Panel-Place-Vendome.pdf`. Para
+      regenerarlo tras un cambio: abrir el HTML con Edge headless
+      (`msedge --headless --no-pdf-header-footer --print-to-pdf=...`).
+      Ojo: el proyecto de Sanity está en **Growth Trial**; el rol Editor es de Growth.
+      Cuando el trial venza y baje a Free, todos los miembros pasan a Administrator.
 - [ ] Endpoints de los formularios de Contacto y Catálogo (siguen con `// TODO`).
 - [ ] `placevendome.ar`: confirmar si está registrado y, si sí, 301 al `.com.ar`.
 

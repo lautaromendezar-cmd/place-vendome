@@ -61,12 +61,23 @@ async function uploadFile(src: string): Promise<string> {
   return asset._id;
 }
 
-/** { src, alt } de site.ts → el objeto `picture` que espera el schema. */
+/**
+ * { src, alt } de site.ts → el objeto `picture` que espera el schema.
+ *
+ * OJO con la forma: el campo `asset` del schema es de tipo `image`, o sea un OBJETO
+ * que envuelve la referencia ({ _type: "image", asset: { _ref } }). Escribir la
+ * referencia pelada acá rompe la subida de fotos desde el Studio (el marcador
+ * `_upload` cae adentro del ref y la API rechaza la mutación con
+ * “Key "_upload" not allowed in ref”). Se pagó el 16-jul-2026.
+ */
 async function picture(image: ImageAsset) {
   return {
     _type: "picture",
     _key: randomUUID(),
-    asset: { _type: "reference", _ref: await uploadImage(image.src) },
+    asset: {
+      _type: "image",
+      asset: { _type: "reference", _ref: await uploadImage(image.src) },
+    },
     alt: image.alt,
   };
 }
@@ -75,7 +86,10 @@ async function captioned(image: ImageAsset & { caption: string }) {
   return {
     _type: "captionedPicture",
     _key: randomUUID(),
-    asset: { _type: "reference", _ref: await uploadImage(image.src) },
+    asset: {
+      _type: "image",
+      asset: { _type: "reference", _ref: await uploadImage(image.src) },
+    },
     alt: image.alt,
     caption: image.caption,
   };

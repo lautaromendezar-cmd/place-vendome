@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Manual del panel — Place Vendôme</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 20mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #1c1a17;
+    --muted: #6b6459;
+    --line: #d8d2c6;
+    --accent: #8a6d3b;
+    --bg-soft: #f7f4ee;
+  }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    font-size: 11.5pt;
+    line-height: 1.55;
+  }
+  /* ---------- portada ---------- */
+  .cover {
+    height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    page-break-after: always;
+  }
+  .cover .brand {
+    font-size: 10pt;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14mm;
+  }
+  .cover h1 {
+    font-size: 30pt;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    margin-bottom: 8mm;
+  }
+  .cover .sub {
+    font-size: 12.5pt;
+    color: var(--muted);
+    margin-bottom: 20mm;
+  }
+  .cover .rule {
+    width: 30mm;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto 20mm;
+  }
+  .cover .url {
+    font-family: Consolas, monospace;
+    font-size: 13pt;
+    color: var(--ink);
+  }
+  .cover .date {
+    margin-top: 30mm;
+    font-size: 9.5pt;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  /* ---------- cuerpo ---------- */
+  h2 {
+    font-size: 17pt;
+    font-weight: normal;
+    margin: 11mm 0 4mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid var(--line);
+    page-break-after: avoid;
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 3mm;
+  }
+  h3 {
+    font-size: 12.5pt;
+    margin: 6mm 0 2mm;
+    page-break-after: avoid;
+  }
+  p { margin-bottom: 3mm; }
+  ul, ol { margin: 0 0 3mm 6mm; }
+  li { margin-bottom: 1.5mm; }
+  strong { font-weight: bold; }
+  code {
+    font-family: Consolas, monospace;
+    font-size: 10pt;
+    background: var(--bg-soft);
+    padding: 0.5mm 1.5mm;
+    border-radius: 2px;
+  }
+  .tip {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    padding: 3mm 4mm;
+    margin: 4mm 0;
+    page-break-inside: avoid;
+  }
+  .tip .tag {
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1mm;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4mm 0;
+    font-size: 10.5pt;
+  }
+  th, td {
+    text-align: left;
+    padding: 2.5mm 3mm;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-size: 9pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  tr { page-break-inside: avoid; }
+  td:first-child { white-space: nowrap; font-weight: bold; }
+  .section-block { page-break-inside: avoid; margin-bottom: 5mm; }
+  .pagebreak { page-break-before: always; }
+  .footer-note {
+    margin-top: 12mm;
+    padding-top: 4mm;
+    border-top: 1px solid var(--line);
+    font-size: 10pt;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<div class="cover">
+  <div class="brand">Place Vendôme</div>
+  <h1>Manual del panel de contenido</h1>
+  <p class="sub">Cómo editar los textos y las fotos del sitio,<br>paso a paso y sin riesgo.</p>
+  <div class="rule"></div>
+  <p class="url">placevendome.com.ar/studio</p>
+  <p class="date">Julio 2026</p>
+</div>
+
+<!-- ==================== 1. ENTRAR ==================== -->
+<h2><span class="num">1.</span>Entrar al panel</h2>
+<p>El panel vive en la misma dirección del sitio, agregando <code>/studio</code> al final:</p>
+<p style="text-align:center; font-size: 14pt; margin: 5mm 0;"><strong>placevendome.com.ar/studio</strong></p>
+<ol>
+  <li>Vas a recibir una <strong>invitación por e‑mail</strong>. Aceptala y creá tu cuenta (podés entrar con tu cuenta de Google, es lo más simple).</li>
+  <li>La próxima vez que entres a <code>/studio</code>, iniciás sesión con esa misma cuenta y listo.</li>
+  <li>Funciona desde la computadora y desde el celular, pero <strong>para editar es mucho más cómodo desde la computadora</strong>.</li>
+</ol>
+
+<!-- ==================== 2. LA REGLA DE ORO ==================== -->
+<h2><span class="num">2.</span>La regla de oro: editar no es publicar</h2>
+<p>Cuando cambiás un texto o una foto, el cambio queda <strong>guardado como borrador</strong> automáticamente (no hace falta apretar “guardar”). Pero el sitio <strong>no cambia</strong> hasta que aprietes el botón <strong>Publish</strong>, abajo a la derecha.</p>
+<ul>
+  <li><strong>Podés editar tranquilo</strong>: mientras no publiques, nadie ve nada.</li>
+  <li>Al apretar <strong>Publish</strong>, el sitio se actualiza solo <strong>en segundos</strong>. No hay que avisarle a nadie ni esperar.</li>
+  <li>Si te arrepentís antes de publicar: menú de los tres puntitos (⋮) junto al botón Publish → <strong>Discard changes</strong>. Eso descarta el borrador y vuelve a lo que está publicado.</li>
+</ul>
+<div class="tip">
+  <span class="tag">Para verlo en el sitio</span>
+  Después de publicar, abrí <strong>placevendome.com.ar</strong> y recargá la página. Si seguís viendo lo viejo, esperá unos segundos y recargá de nuevo (en la computadora: Ctrl + F5).
+</div>
+
+<!-- ==================== 3. TEXTOS ==================== -->
+<h2><span class="num">3.</span>Cómo editar textos</h2>
+<ol>
+  <li>En el menú de la izquierda, elegí la sección (Portada, Concepto, Galería…).</li>
+  <li>Hacé clic en el campo y escribí. Cada campo tiene abajo una <strong>ayuda en gris</strong> que explica qué es y dónde se ve.</li>
+  <li>Apretá <strong>Publish</strong>.</li>
+</ol>
+<ul>
+  <li>En los <strong>títulos</strong> de sección, cada Enter es un salto de línea real en el sitio: podés decidir dónde se corta el renglón.</li>
+  <li>Si un campo queda marcado <strong>en rojo</strong>, falta algo obligatorio o hay un error (la explicación aparece al lado). El panel no deja publicar hasta corregirlo — es a propósito, para que el sitio nunca quede roto.</li>
+  <li>Las listas (párrafos, ítems, fotos) se <strong>reordenan arrastrando</strong> desde los puntitos a la izquierda de cada ítem.</li>
+</ul>
+
+<!-- ==================== 4. FOTOS ==================== -->
+<h2><span class="num">4.</span>Cómo cambiar fotos</h2>
+<ol>
+  <li>Hacé clic en la foto → <strong>Upload</strong> para subir una nueva desde tu computadora.</li>
+  <li>Completá la <strong>“Descripción de la foto”</strong>: una frase corta diciendo qué se ve (ej.: <em>“Lobby de acceso con doble altura”</em>). Es obligatoria — la usan Google y las personas con lector de pantalla.</li>
+  <li><strong>Publish</strong>.</li>
+</ol>
+<ul>
+  <li>Conviene subir fotos <strong>grandes y de buena calidad</strong>; el sitio las achica solo según la pantalla de cada visitante.</li>
+  <li>En la <strong>Galería</strong>, el orden de las fotos en el panel es el orden en el sitio: arrastrá para reordenar.</li>
+  <li>Si una foto sale cortada en el sitio por el lado equivocado, editala y usá la herramienta de <strong>recorte/hotspot</strong> (ícono de lápiz sobre la imagen): marcás el punto importante y el sitio siempre lo va a mantener visible.</li>
+</ul>
+
+<!-- ==================== 5. SECCIONES ==================== -->
+<h2 class="pagebreak"><span class="num">5.</span>Qué hay en cada sección</h2>
+<p>El menú de la izquierda tiene <strong>Ajustes generales</strong> y las diez secciones del sitio, en el mismo orden en que aparecen al scrollear.</p>
+
+<table>
+  <tr><th>Sección</th><th>Qué se edita ahí</th></tr>
+  <tr><td>Ajustes generales</td><td><strong>WhatsApp de ventas</strong>: el número al que llegan las consultas y el mensaje que aparece ya escrito cuando alguien abre el chat. El número va con código de país y sin espacios ni guiones (ej.: <code>5491122334455</code>). <strong>Google/SEO</strong>: el título y la descripción que se ven en los resultados de Google.</td></tr>
+  <tr><td>Portada</td><td>La frase principal, la línea de ubicación, el texto del botón y la <strong>foto de portada</strong> (se ve en celulares y mientras carga el video). El video de fondo no se cambia desde el panel.</td></tr>
+  <tr><td>Concepto</td><td>Los párrafos de presentación (uno por ítem, arrastrables), la frase destacada y la foto.</td></tr>
+  <tr><td>Galería</td><td>Las fotos del edificio. Agregá, sacá y arrastrá: el orden acá es el orden en el sitio. Mínimo tres fotos.</td></tr>
+  <tr><td>Amenities</td><td>Dos listas. <strong>“Amenities con foto”</strong>: cada amenity con su nombre, un ícono (se elige de una lista, no se suben) y su foto; si todavía no hay render real, activá <em>“Todavía no hay render real”</em> y la foto sale atenuada con el cartel “Render próximamente”. <strong>“Listado por categoría”</strong>: las columnas de texto (Propietarios, Invitados, Seguridad, Cocheras).</td></tr>
+  <tr><td>Tipologías</td><td>Los números grandes (unidades, ambientes, m²), los diferenciales por unidad y la aclaración chica. <strong>Los planos no se editan desde el panel</strong> (son documentación técnica).</td></tr>
+  <tr><td>Terminaciones</td><td>Cada detalle de terminación con su foto, título (ej.: “Aberturas REHAU”) y bajada. Si una foto es apaisada, activá <em>“Foto horizontal”</em> para que ocupe todo el ancho.</td></tr>
+  <tr><td>Lifestyle</td><td>La foto de fondo y la frase que se va pintando al scrollear. Para poner palabras en <em>itálica</em>, rodealas con asteriscos: <code>el lujo no se *muestra*: se *habita*</code>. Los asteriscos van siempre de a pares.</td></tr>
+  <tr><td>Ubicación</td><td>Los textos del barrio, la dirección, las tres fotos con epígrafe, los bloques destacados (gastronomía, conectividad…) y la lista de accesos. Si el mapa apunta mal, corregí el campo <em>“Dirección para el mapa”</em>.</td></tr>
+  <tr><td>Contacto</td><td>El texto y el botón de WhatsApp, el mensaje de confirmación del formulario y la foto. Los campos del formulario (Nombre, E‑mail…) no se editan desde el panel.</td></tr>
+  <tr><td>Catálogo</td><td>La descripción, el texto del botón y <strong>el PDF que se descarga</strong>: cuando tengas una versión nueva del catálogo, subila acá y se actualiza sola.</td></tr>
+</table>
+
+<!-- ==================== 6. LO QUE NO SE TOCA ==================== -->
+<h2><span class="num">6.</span>Lo que no se edita desde el panel (a propósito)</h2>
+<p>Algunas cosas están fijas para que el diseño no se pueda romper por accidente:</p>
+<ul>
+  <li>La <strong>marca y los logos</strong>, el <strong>menú</strong> de navegación y los <strong>textos legales</strong>.</li>
+  <li>Los <strong>planos</strong> de las tipologías y el <strong>video de fondo</strong> de la portada.</li>
+  <li>Los <strong>campos de los formularios</strong> (Nombre, E‑mail, etc.).</li>
+</ul>
+<p>Si necesitás cambiar algo de esa lista, pedíselo a Lautaro: se cambia, pero se hace desde el código.</p>
+
+<!-- ==================== 7. PROBLEMAS ==================== -->
+<h2><span class="num">7.</span>Si algo no sale</h2>
+<table>
+  <tr><th>Qué pasa</th><th>Qué hacer</th></tr>
+  <tr><td>Publiqué y no veo el cambio</td><td>Esperá unos segundos y recargá la página (Ctrl + F5 en la computadora). Verificá también que hayas apretado <strong>Publish</strong> y no solo cerrado el panel.</td></tr>
+  <tr><td>No me deja publicar</td><td>Buscá el campo marcado en rojo: falta algo obligatorio o tiene un error. La explicación está al lado del campo.</td></tr>
+  <tr><td>Me equivoqué y ya publiqué</td><td>Corregilo y volvé a publicar. Si no recordás cómo estaba, avisale a Lautaro: cada publicación queda registrada y se puede recuperar.</td></tr>
+  <tr><td>No puedo entrar al panel</td><td>Verificá que estés entrando con la misma cuenta con la que aceptaste la invitación. Si sigue sin andar, avisale a Lautaro.</td></tr>
+</table>
+
+<p class="footer-note">Manual del panel de contenido · Place Vendôme · placevendome.com.ar/studio<br>Ante cualquier duda: Lautaro Méndez</p>
+
+</body>
+</html>
