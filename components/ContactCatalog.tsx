@@ -29,18 +29,50 @@ export default function ContactCatalog({
   const [showForm, setShowForm] = useState(false);
   const [contactSent, setContactSent] = useState(false);
   const [catalogSent, setCatalogSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [contactError, setContactError] = useState(false);
 
   const waHref = `https://wa.me/${whatsapp.phone}?text=${encodeURIComponent(whatsapp.message)}`;
 
-  function handleContact(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    // TODO: conectar endpoint (API route / CRM)
-    setContactSent(true);
+  /** Manda un formulario a /api/contact. Devuelve true si salió bien. */
+  async function submitLead(form: HTMLFormElement, tipo: "consulta" | "catalogo") {
+    const data = Object.fromEntries(new FormData(form).entries());
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, tipo }),
+      });
+      return res.ok;
+    } catch {
+      return false;
+    }
   }
 
-  function handleCatalog(e: FormEvent<HTMLFormElement>) {
+  async function handleContact(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: conectar endpoint (lead magnet)
+    if (sending) return;
+    setSending(true);
+    setContactError(false);
+
+    const ok = await submitLead(e.currentTarget, "consulta");
+    setSending(false);
+    if (ok) {
+      setContactSent(true);
+    } else {
+      setContactError(true);
+    }
+  }
+
+  async function handleCatalog(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+
+    // Si el mail del lead falla, el visitante igual se lleva el catálogo:
+    // perder el dato es preferible a frustrar al interesado.
+    await submitLead(e.currentTarget, "catalogo");
+    setSending(false);
     setCatalogSent(true);
     const link = document.createElement("a");
     link.href = catalog.fileUrl;
@@ -117,6 +149,15 @@ export default function ContactCatalog({
                   }`}
                 >
                   <div className="min-h-0 space-y-5">
+                    {/* Honeypot anti-bots: invisible para humanos. */}
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    />
                     <input
                       className="field"
                       name="nombre"
@@ -160,10 +201,17 @@ export default function ContactCatalog({
                     />
                     <button
                       type="submit"
-                      className="w-full cursor-pointer border border-gold/50 bg-transparent py-3.5 text-[0.72rem] uppercase tracking-[0.4em] text-gold-light transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-ink"
+                      disabled={sending}
+                      className="w-full cursor-pointer border border-gold/50 bg-transparent py-3.5 text-[0.72rem] uppercase tracking-[0.4em] text-gold-light transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-ink disabled:cursor-wait disabled:opacity-60"
                     >
-                      {contact.submitLabel}
+                      {sending ? "Enviando…" : contact.submitLabel}
                     </button>
+                    {contactError && (
+                      <p className="text-xs font-light text-gold-light/80">
+                        No pudimos enviar tu consulta. Probá de nuevo en un
+                        momento o escribinos directo por WhatsApp.
+                      </p>
+                    )}
                   </div>
                 </form>
               )}
@@ -192,6 +240,15 @@ export default function ContactCatalog({
                 </p>
               ) : (
                 <form onSubmit={handleCatalog} className="mt-8 space-y-5">
+                  {/* Honeypot anti-bots: invisible para humanos. */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                  />
                   <input
                     className="field"
                     name="nombre"
@@ -209,7 +266,8 @@ export default function ContactCatalog({
                   />
                   <button
                     type="submit"
-                    className="flex w-full items-center justify-center gap-2 bg-gold py-4 text-[0.72rem] uppercase tracking-[0.3em] text-ink transition-colors duration-300 hover:bg-gold-light"
+                    disabled={sending}
+                    className="flex w-full items-center justify-center gap-2 bg-gold py-4 text-[0.72rem] uppercase tracking-[0.3em] text-ink transition-colors duration-300 hover:bg-gold-light disabled:cursor-wait disabled:opacity-60"
                   >
                     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                       <path d="M8 1v9m0 0L4.5 6.5M8 10l3.5-3.5M2 13h12" stroke="currentColor" strokeWidth="1.3" />
