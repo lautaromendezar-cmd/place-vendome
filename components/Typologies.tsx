@@ -11,13 +11,10 @@ export default function Typologies({
 }: {
   content: TypologiesContent;
 }) {
-  const [buildingId, setBuildingId] = useState(content.buildings[0].id);
   const [zoom, setZoom] = useState<string | null>(null);
 
-  const building =
-    content.buildings.find((b) => b.id === buildingId) ?? content.buildings[0];
   const zoomed = zoom
-    ? content.buildings.flatMap((b) => b.units).find((u) => u.plan.src === zoom)
+    ? content.units.find((u) => u.plan.src === zoom)
     : null;
 
   useEffect(() => {
@@ -68,39 +65,10 @@ export default function Typologies({
           </ul>
         </Reveal>
 
-        {/* Toggle Edificio 1 / Edificio 2 */}
-        <Reveal className="mt-12 flex justify-center md:mt-16">
-          <div
-            className="inline-flex border border-ink/15"
-            role="tablist"
-            aria-label="Seleccionar edificio"
-          >
-            {content.buildings.map((b) => {
-              const active = b.id === buildingId;
-              return (
-                <button
-                  key={b.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={active}
-                  onClick={() => setBuildingId(b.id)}
-                  className={`cursor-pointer px-7 py-3 text-[0.7rem] uppercase tracking-[0.3em] transition-colors duration-300 md:px-10 ${
-                    active
-                      ? "bg-ink text-cream"
-                      : "bg-transparent text-stone hover:text-ink"
-                  }`}
-                >
-                  {b.name}
-                </button>
-              );
-            })}
-          </div>
-        </Reveal>
-
-        {/* Planos del edificio activo */}
+        {/* Planos modelo (una tipología por plano) */}
         <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-2 md:gap-10">
-          {building.units.map((unit, i) => (
-            <Reveal key={`${building.id}-${unit.label}`} delay={i * 120}>
+          {content.units.map((unit, i) => (
+            <Reveal key={unit.label} delay={i * 120}>
               <article className="flex h-full flex-col">
                 <button
                   type="button"
@@ -108,7 +76,7 @@ export default function Typologies({
                   aria-label={`${content.zoomHint}: ${unit.label}`}
                   className="group relative block w-full cursor-pointer overflow-hidden border border-ink/10 bg-white"
                 >
-                  <div className="relative aspect-[16/10] w-full">
+                  <div className="relative aspect-[7/5] w-full">
                     <Image
                       src={unit.plan.src}
                       alt={unit.plan.alt}
@@ -144,6 +112,24 @@ export default function Typologies({
           <p className="mx-auto max-w-2xl text-center text-sm font-light leading-relaxed text-stone">
             {content.note}
           </p>
+          <div className="mt-6 flex justify-center">
+            <a
+              href={content.catalogCta.href}
+              className="group inline-flex items-center gap-3 border-b border-gold/40 pb-1 text-[0.72rem] uppercase tracking-[0.28em] text-ink transition-colors duration-300 hover:border-gold hover:text-gold-dim"
+            >
+              {content.catalogCta.label}
+              <svg
+                width="17"
+                height="12"
+                viewBox="0 0 18 12"
+                fill="none"
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                <path d="M1 6h15M11 1l5 5-5 5" stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+            </a>
+          </div>
         </Reveal>
       </div>
 

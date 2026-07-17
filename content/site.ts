@@ -249,58 +249,32 @@ export const site: SiteContent = {
       "Palier privado de ingreso",
       "Ventanales de vista corrida",
     ],
-    note: "Estas son las unidades de planta baja, con jardín y expansión propia. El catálogo completo incluye todas las plantas por piso y tipología.",
+    note: "Estas son dos tipologías modelo. El catálogo completo incluye todas las plantas por piso, orientación y tipología.",
     zoomHint: "Ampliar plano",
-    buildings: [
+    units: [
       {
-        id: "e1",
-        name: "Edificio 1",
-        units: [
-          {
-            label: "Depto A",
-            subtitle: "Planta Baja",
-            detail: "Jardín y expansión propia · Frente a Av. Larrazábal",
-            plan: {
-              src: "/planos/e1-pb-depto-a.png",
-              alt: "Planta del Depto A de planta baja, Edificio 1",
-            },
-          },
-          {
-            label: "Depto B",
-            subtitle: "Planta Baja",
-            detail: "Jardín y expansión propia · Contrafrente",
-            plan: {
-              src: "/planos/e1-pb-depto-b.png",
-              alt: "Planta del Depto B de planta baja, Edificio 1",
-            },
-          },
-        ],
+        label: "3 Ambientes",
+        subtitle: "140 m² totales",
+        detail: "126,40 m² cubiertos + 13,60 m² de balcones · Pisos 1° a 4°",
+        plan: {
+          src: "/planos/depto-3-amb.webp",
+          alt: "Plano de la tipología de 3 ambientes, pisos 1° a 4°",
+        },
       },
       {
-        id: "e2",
-        name: "Edificio 2",
-        units: [
-          {
-            label: "Depto A",
-            subtitle: "Planta Baja",
-            detail: "Jardín y expansión propia · Frente a Av. Larrazábal",
-            plan: {
-              src: "/planos/e2-pb-depto-a.png",
-              alt: "Planta del Depto A de planta baja, Edificio 2",
-            },
-          },
-          {
-            label: "Depto B",
-            subtitle: "Planta Baja",
-            detail: "Jardín y expansión propia · Esquina Ercilla",
-            plan: {
-              src: "/planos/e2-pb-depto-b.png",
-              alt: "Planta del Depto B de planta baja, Edificio 2",
-            },
-          },
-        ],
+        label: "4 Ambientes",
+        subtitle: "182,70 m² totales",
+        detail: "167 m² cubiertos + 15,70 m² de balcones · Pisos 1° a 4°",
+        plan: {
+          src: "/planos/depto-4-amb.webp",
+          alt: "Plano de la tipología de 4 ambientes, pisos 1° a 4°",
+        },
       },
     ],
+    catalogCta: {
+      label: "Acceder al catálogo completo",
+      href: "#catalogo",
+    },
   },
 
   terminaciones: {

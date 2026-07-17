@@ -113,12 +113,6 @@ export interface TypologyUnit {
   plan: ImageAsset;
 }
 
-export interface TypologyBuilding {
-  id: string;
-  name: string;
-  units: TypologyUnit[];
-}
-
 export interface TypologyStat {
   value: string;
   label: string;
@@ -133,7 +127,13 @@ export interface TypologiesContent {
   features: string[];
   note: string;
   zoomHint: string;
-  buildings: TypologyBuilding[];
+  /** Los planos modelo que se muestran (una tipología por plano). */
+  units: TypologyUnit[];
+  /** Enlace al catálogo completo con todas las plantas (baja al form #catalogo). */
+  catalogCta: {
+    label: string;
+    href: string;
+  };
 }
 
 export interface NeighborhoodPhoto {
